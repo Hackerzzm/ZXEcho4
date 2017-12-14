@@ -1,0 +1,120 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .idea\
+* .idea\.name
+* .idea\artifacts\
+* .idea\artifacts\asd.xml
+* .idea\compiler.xml
+* .idea\copyright\
+* .idea\copyright\profiles_settings.xml
+* .idea\libraries\
+* .idea\libraries\AgoraSDK.xml
+* .idea\libraries\agora_rtc_sdk.xml
+* .idea\misc.xml
+* .idea\modules.xml
+* .idea\uiDesigner.xml
+* .idea\vcs.xml
+* .idea\workspace.xml
+* Application.mk
+* ant.properties
+* asd.properties
+* asd.xml
+* build.xml
+* module_myapp1.xml
+* module_myapp1_Sat_Nov_14_15-09-10_CST_2015.xml
+* myapp1.iml
+* myapp1.properties
+* myapp1.xml
+* myapp1_Thu_Jun_25_11-07-59_CST_2015.properties
+* myapp1_Thu_Jun_25_11-46-11_CST_2015.properties
+* myapp1_Thu_Jun_25_11-49-48_CST_2015.properties
+* out\
+* out\artifacts\
+* out\artifacts\asd\
+* out\artifacts\asd\asd.apk
+* out\production\
+* out\production\myapp1\
+* out\production\myapp1\com\
+* out\production\myapp1\com\example\
+* out\production\myapp1\com\example\myapp1\
+* out\production\myapp1\com\example\myapp1\ActivityLogin$1.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$10.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$11.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$12.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$13.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$15.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$16.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$17.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$18.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$19.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$2.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$20.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$21.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$3.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$4.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$5.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$6.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$7.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$8.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin$9.class
+* out\production\myapp1\com\example\myapp1\ActivityLogin.class
+* out\production\myapp1\com\example\myapp1\BuildConfig.class
+* out\production\myapp1\com\example\myapp1\R$attr.class
+* out\production\myapp1\com\example\myapp1\R$drawable.class
+* out\production\myapp1\com\example\myapp1\R$id.class
+* out\production\myapp1\com\example\myapp1\R$layout.class
+* out\production\myapp1\com\example\myapp1\R$string.class
+* out\production\myapp1\com\example\myapp1\R.class
+* out\production\myapp1\io\
+* out\production\myapp1\io\agora\
+* out\production\myapp1\io\agora\media\
+* out\production\myapp1\io\agora\media\DynamicKey.class
+* out\production\myapp1\io\agora\media\DynamicKey3.class
+* out\production\myapp1\io\agora\media\DynamicKey4.class
+* out\production\myapp1\io\agora\media\DynamicKeyUtil.class
+* proguard-project.txt
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => myapp1\src\main\AndroidManifest.xml
+* assets\ => myapp1\src\main\assets
+* jni\ => myapp1\src\main\jni\
+* libs\agora-rtc-sdk.jar => myapp1\libs\agora-rtc-sdk.jar
+* libs\AgoraSDK.jar => myapp1\libs\AgoraSDK.jar
+* libs\android-async-http-1.4.8.jar => myapp1\libs\android-async-http-1.4.8.jar
+* libs\arm64-v8a\libagorasdk2.so => myapp1\src\main\jniLibs\arm64-v8a\libagorasdk2.so
+* libs\armeabi-v7a\libagora-rtc-sdk-jni.so => myapp1\src\main\jniLibs\armeabi-v7a\libagora-rtc-sdk-jni.so
+* libs\armeabi-v7a\libagorasdk2.so => myapp1\src\main\jniLibs\armeabi-v7a\libagorasdk2.so
+* libs\armeabi-v7a\libHDACEngine.so => myapp1\src\main\jniLibs\armeabi-v7a\libHDACEngine.so
+* libs\crasheye.jar => myapp1\libs\crasheye.jar
+* libs\fastjson.jar => myapp1\libs\fastjson.jar
+* libs\x86\libagora-rtc-sdk-jni.so => myapp1\src\main\jniLibs\x86\libagora-rtc-sdk-jni.so
+* libs\x86\libagorasdk2.so => myapp1\src\main\jniLibs\x86\libagorasdk2.so
+* libs\x86\libHDACEngine.so => myapp1\src\main\jniLibs\x86\libHDACEngine.so
+* res\ => myapp1\src\main\res\
+* src\ => myapp1\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

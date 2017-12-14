@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:weightSum="1">
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content"
+            >
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/editText" android:text="Accounts : "/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:weightSum="1">
+                <Button
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Login"
+                        android:id="@+id/buttonLogin"/>
+                <EditText
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextName" android:text="xxx"/>
+                <Button
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Switch"
+                        android:id="@+id/buttonSwitch"/>
+            </LinearLayout>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/editText2" android:text="Calls : "/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+                        <Button android:layout_width="100dp" android:layout_height="wrap_content" android:text="Call"
+                                android:id="@+id/buttonCall"/>
+                        <EditText
+                                android:layout_width="160dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/editTextCallUser" android:text="yyy"/>
+                        <Button android:layout_width="100dp" android:layout_height="wrap_content" android:text="InstMsg"
+                                android:id="@+id/buttonInstMsg"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <EditText android:layout_width="match_parent" android:layout_height="0dp"
+                      android:id="@+id/editText3" android:text="Channels : "/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                <Button android:layout_width="100dp" android:layout_height="wrap_content" android:text="Join"
+                        android:id="@+id/buttonJoin"/>
+                <EditText
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextChannelName" android:text="demoroom1"/>
+                <Button android:layout_width="100dp" android:layout_height="wrap_content" android:text="Msg"
+                        android:id="@+id/buttonSendMsg"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+                  android:layout_height="0dp" android:weightSum="1" android:id="@+id/pstn_line">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="209dp"
+                android:layout_height="wrap_content" android:layout_weight="0.34">
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/editSrc" android:text="+8613400001111"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/editDst"
+                      android:text="+8615800001111"/>
+        </LinearLayout>
+        <Button android:layout_width="wrap_content" android:layout_height="match_parent" android:text="CallPhone"
+                android:id="@+id/buttonCallPhone" android:layout_weight="0.41"/>
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speaker"
+                android:id="@+id/checkBoxSpeaker" android:checked="false"/>
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mute"
+                android:id="@+id/checkBoxMute" android:checked="false"/>
+        <CheckBox
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="Video"
+                android:id="@+id/checkBoxVideo" android:checked="false"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Env"
+                android:id="@+id/buttonEnv"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+        <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp" android:id="@+id/video1">
+        </FrameLayout>
+        <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:id="@+id/video2">
+        </FrameLayout>
+        <FrameLayout android:layout_width="100dp" android:layout_height="100dp" android:id="@+id/video3"/>
+    </LinearLayout>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editTextLog" android:layout_gravity="center_horizontal"
+            android:maxHeight="1000dp" android:phoneNumber="true" android:editable="false" android:focusable="false"
+            android:enabled="true" android:textSize="10dp"/>
+</LinearLayout>
+
