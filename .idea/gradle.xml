@@ -8,7 +8,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/myapp1" />
+            <option value="$PROJECT_DIR$/AgoraSignal_OpenVideoCall" />
+            <option value="$PROJECT_DIR$/AgoraSignal_Tutorial-1to1" />
+            <option value="$PROJECT_DIR$/OpenLive" />
+            <option value="$PROJECT_DIR$/OpenVideoCall" />
+            <option value="$PROJECT_DIR$/Tutorial-1to1" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

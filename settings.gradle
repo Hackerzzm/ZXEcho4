@@ -1,1 +1,2 @@
-include ':myapp1'
+include ':AgoraSignal_Tutorial-1to1', ':OpenLive', ':OpenVideoCall', ':Tutorial-1to1'
+include ':AgoraSignal_OpenVideoCall'

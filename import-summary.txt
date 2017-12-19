@@ -86,23 +86,23 @@ Moved Files:
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => myapp1\src\main\AndroidManifest.xml
-* assets\ => myapp1\src\main\assets
-* jni\ => myapp1\src\main\jni\
-* libs\agora-rtc-sdk.jar => myapp1\libs\agora-rtc-sdk.jar
-* libs\AgoraSDK.jar => myapp1\libs\AgoraSDK.jar
-* libs\android-async-http-1.4.8.jar => myapp1\libs\android-async-http-1.4.8.jar
-* libs\arm64-v8a\libagorasdk2.so => myapp1\src\main\jniLibs\arm64-v8a\libagorasdk2.so
-* libs\armeabi-v7a\libagora-rtc-sdk-jni.so => myapp1\src\main\jniLibs\armeabi-v7a\libagora-rtc-sdk-jni.so
-* libs\armeabi-v7a\libagorasdk2.so => myapp1\src\main\jniLibs\armeabi-v7a\libagorasdk2.so
-* libs\armeabi-v7a\libHDACEngine.so => myapp1\src\main\jniLibs\armeabi-v7a\libHDACEngine.so
-* libs\crasheye.jar => myapp1\libs\crasheye.jar
-* libs\fastjson.jar => myapp1\libs\fastjson.jar
-* libs\x86\libagora-rtc-sdk-jni.so => myapp1\src\main\jniLibs\x86\libagora-rtc-sdk-jni.so
-* libs\x86\libagorasdk2.so => myapp1\src\main\jniLibs\x86\libagorasdk2.so
-* libs\x86\libHDACEngine.so => myapp1\src\main\jniLibs\x86\libHDACEngine.so
-* res\ => myapp1\src\main\res\
-* src\ => myapp1\src\main\java\
+* AndroidManifest.xml => AgoraSignal_OpenVideoCall\src\main\AndroidManifest.xml
+* assets\ => AgoraSignal_OpenVideoCall\src\main\assets
+* jni\ => AgoraSignal_OpenVideoCall\src\main\jni\
+* libs\agora-rtc-sdk.jar => AgoraSignal_OpenVideoCall\libs\agora-rtc-sdk.jar
+* libs\AgoraSDK.jar => AgoraSignal_OpenVideoCall\libs\AgoraSDK.jar
+* libs\android-async-http-1.4.8.jar => AgoraSignal_OpenVideoCall\libs\android-async-http-1.4.8.jar
+* libs\arm64-v8a\libagorasdk2.so => AgoraSignal_OpenVideoCall\src\main\jniLibs\arm64-v8a\libagorasdk2.so
+* libs\armeabi-v7a\libagora-rtc-sdk-jni.so => AgoraSignal_OpenVideoCall\src\main\jniLibs\armeabi-v7a\libagora-rtc-sdk-jni.so
+* libs\armeabi-v7a\libagorasdk2.so => AgoraSignal_OpenVideoCall\src\main\jniLibs\armeabi-v7a\libagorasdk2.so
+* libs\armeabi-v7a\libHDACEngine.so => AgoraSignal_OpenVideoCall\src\main\jniLibs\armeabi-v7a\libHDACEngine.so
+* libs\crasheye.jar => AgoraSignal_OpenVideoCall\libs\crasheye.jar
+* libs\fastjson.jar => AgoraSignal_OpenVideoCall\libs\fastjson.jar
+* libs\x86\libagora-rtc-sdk-jni.so => AgoraSignal_OpenVideoCall\src\main\jniLibs\x86\libagora-rtc-sdk-jni.so
+* libs\x86\libagorasdk2.so => AgoraSignal_OpenVideoCall\src\main\jniLibs\x86\libagorasdk2.so
+* libs\x86\libHDACEngine.so => AgoraSignal_OpenVideoCall\src\main\jniLibs\x86\libHDACEngine.so
+* res\ => AgoraSignal_OpenVideoCall\src\main\res\
+* src\ => AgoraSignal_OpenVideoCall\src\main\java\
 
 Next Steps:
 -----------

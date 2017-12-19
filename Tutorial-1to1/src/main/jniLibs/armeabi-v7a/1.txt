@@ -1,0 +1,180 @@
+data  * 0 0
+loop  * 8 4
+type  int 10  8
+close_cb  * 14  C
+handle_queue[0] * 1C  10
+handle_queue[1] * 24  14
+next_closing  * 2C  18
+flags int 34  1C
+timer_cb  * 38  20
+heap_node[0]  * 40  24
+heap_node[0]  * 48  28
+heap_node[0]  * 50  2C
+timeout uint64  58  34
+repeat  uint64  60  3C
+start_id  uint64  68  44
+
+
+000cde8c <uv_timer_start>:
+   cde8c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+
+   r0 handler
+   r1 cb
+   r2 timeout
+   r3 timeout2
+
+   r4 handler
+   r5 cb
+   r6 timeout
+   r7 timeout2
+
+   cde8e:	4604      	mov	r4, r0
+   cde90:	4616      	mov	r6, r2
+   cde92:	461f      	mov	r7, r3
+   cde94:	460d      	mov	r5, r1
+
+//  if (cb == NULL)
+//    return -EINVAL;
+
+   cde96:	2900      	cmp	r1, #0
+   cde98:	d06d      	beq.n	cdf76 <uv_timer_start+0xea>
+
+//  if (uv__is_active(handle))
+//  if (handle->flags & 0x40 !=0)
+//    uv_timer_stop(handle);
+   cde9a:	6ac3      	ldr	r3, [r0, #44]	; 0x2c    # flags
+   cde9c:	045a      	lsls	r2, r3, #17           # << 17
+   cde9e:	d501      	bpl.n	cdea4 <uv_timer_start+0x18>
+   cdea0:	f7ff ff6e 	bl	cdd80 <uv_timer_stop>
+
+//  clamped_timeout = handle->loop->time + timeout;
+//  if (clamped_timeout < timeout)
+//    clamped_timeout = (uint64_t) -1;
+//  handle->timer_cb = cb;
+   cdea4:	6863      	ldr	r3, [r4, #4]                  # r3 = handle->loop
+   cdea6:	f503 728c 	add.w	r2, r3, #280	; 0x118
+   cdeaa:	e9d2 0100 	ldrd	r0, r1, [r2]                # r0,r1 = handle->loop->time
+   cdeae:	6325      	str	r5, [r4, #48]	; 0x30          # handle->timer_cb = cb
+   cdeb0:	1980      	adds	r0, r0, r6
+   cdeb2:	4179      	adcs	r1, r7                      # r0,r1 = handle->loop->time + timeout
+   cdeb4:	42b9      	cmp	r1, r7                        # cmp r0,r1<r6,r7
+   cdeb6:	bf08      	it	eq
+   cdeb8:	42b0      	cmpeq	r0, r6
+   cdeba:	bf3c      	itt	cc
+   cdebc:	f04f 30ff 	movcc.w	r0, #4294967295	; 0xffffffff
+   cdec0:	f04f 31ff 	movcc.w	r1, #4294967295	; 0xffffffff
+
+// handle->timeout = clamped_timeout;
+   cdec4:	e9c4 0110 	strd	r0, r1, [r4, #64]	; 0x40
+
+// handle->repeat = repeat
+   cdec8:	e9dd 0106 	ldrd	r0, r1, [sp, #24]
+   cdecc:	e9c4 0112 	strd	r0, r1, [r4, #72]	; 0x48
+
+//  handle->start_id = handle->loop->timer_counter++;
+   cded0:	e9f3 0144 	ldrd	r0, r1, [r3, #272]!	; 0x110
+   cded4:	1c46      	adds	r6, r0, #1
+   cded6:	f141 0700 	adc.w	r7, r1, #0
+   cdeda:	e9c3 6700 	strd	r6, r7, [r3]
+   cdede:	6862      	ldr	r2, [r4, #4]
+   cdee0:	2300      	movs	r3, #0
+   cdee2:	e9c4 0114 	strd	r0, r1, [r4, #80]	; 0x50
+
+  struct {                                                                    \
+    void* min;                                                                \
+    unsigned int nelts;                                                       \
+  } timer_heap;
+
+r2 loop
+r4 handle
+
+
+
+
+// r6 = handle->heap_node
+   cdee6:	f104 0634 	add.w	r6, r4, #52	; 0x34
+
+// handle->heap_node[0] = 0 = r3
+   cdeea:	6363      	str	r3, [r4, #52]	; 0x34
+
+// r7 = loop->timer_heap
+   cdeec:	f502 7784 	add.w	r7, r2, #264	; 0x108
+
+// handle->heap_node[1] = 0 = r3
+   cdef0:	63a3      	str	r3, [r4, #56]	; 0x38
+   cdef2:	461d      	mov	r5, r3
+
+// handle->heap_node[2] = 0 = r3
+   cdef4:	63e3      	str	r3, [r4, #60]	; 0x3c
+
+//
+   cdef6:	f8d2 110c 	ldr.w	r1, [r2, #268]	; 0x10c
+   cdefa:	3101      	adds	r1, #1
+
++0x70:
+   cdefc:	2901      	cmp	r1, #1
+   cdefe:	d906      	bls.n	cdf0e <uv_timer_start+0x82>
+   cdf00:	f001 0001 	and.w	r0, r1, #1
+   cdf04:	3301      	adds	r3, #1
+   cdf06:	ea40 0545 	orr.w	r5, r0, r5, lsl #1
+   cdf0a:	0849      	lsrs	r1, r1, #1
+   cdf0c:	e7f6      	b.n	cdefc <uv_timer_start+0x70>
+
++0x82:
+   cdf0e:	4638      	mov	r0, r7
+   cdf10:	46be      	mov	lr, r7
+   cdf12:	b153      	cbz	r3, cdf2a <uv_timer_start+0x9e>
+   cdf14:	6801      	ldr	r1, [r0, #0]
+   cdf16:	f015 0f01 	tst.w	r5, #1
+   cdf1a:	4686      	mov	lr, r0
+   cdf1c:	ea4f 0555 	mov.w	r5, r5, lsr #1
+   cdf20:	bf18      	it	ne
+   cdf22:	3104      	addne	r1, #4
+   cdf24:	3b01      	subs	r3, #1
+   cdf26:	4608      	mov	r0, r1
+   cdf28:	e7f3      	b.n	cdf12 <uv_timer_start+0x86>
+
++0x9e:
+   cdf2a:	f8de 3000 	ldr.w	r3, [lr]
+   cdf2e:	63e3      	str	r3, [r4, #60]	; 0x3c
+
+crash
+
+   cdf30:	6006      	str	r6, [r0, #0]
+   cdf32:	f8d2 310c 	ldr.w	r3, [r2, #268]	; 0x10c
+   cdf36:	3301      	adds	r3, #1
+   cdf38:	f8c2 310c 	str.w	r3, [r2, #268]	; 0x10c
+
++0xb0
+   cdf3c:	6be5      	ldr	r5, [r4, #60]	; 0x3c
+   cdf3e:	b155      	cbz	r5, cdf56 <uv_timer_start+0xca>
+   cdf40:	4630      	mov	r0, r6
+   cdf42:	4629      	mov	r1, r5
+   cdf44:	f7ff fee9 	bl	cdd1a <uv_key_set+0x64>
+   cdf48:	b128      	cbz	r0, cdf56 <uv_timer_start+0xca>
+   cdf4a:	4638      	mov	r0, r7
+   cdf4c:	4629      	mov	r1, r5
+   cdf4e:	4632      	mov	r2, r6
+   cdf50:	f7ff feb9 	bl	cdcc6 <uv_key_set+0x10>
+   cdf54:	e7f2      	b.n	cdf3c <uv_timer_start+0xb0>
+
++0xca
+   cdf56:	6ae3      	ldr	r3, [r4, #44]	; 0x2c
+   cdf58:	f413 4080 	ands.w	r0, r3, #16384	; 0x4000
+   cdf5c:	d001      	beq.n	cdf62 <uv_timer_start+0xd6>
+   cdf5e:	2000      	movs	r0, #0
+   cdf60:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+   cdf62:	f443 4280 	orr.w	r2, r3, #16384	; 0x4000
+   cdf66:	049b      	lsls	r3, r3, #18
+   cdf68:	62e2      	str	r2, [r4, #44]	; 0x2c
+   cdf6a:	d5f8      	bpl.n	cdf5e <uv_timer_start+0xd2>
+   cdf6c:	6862      	ldr	r2, [r4, #4]
+   cdf6e:	6853      	ldr	r3, [r2, #4]
+   cdf70:	3301      	adds	r3, #1
+   cdf72:	6053      	str	r3, [r2, #4]
+   cdf74:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+
+// return -EINVAL
+   cdf76:	f06f 0015 	mvn.w	r0, #21
+   cdf7a:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+
