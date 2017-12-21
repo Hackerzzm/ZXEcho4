@@ -1,0 +1,69 @@
+package zzm.zxecho.openlive.ui;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+public class VideoProfileAdapter extends RecyclerView.Adapter {
+  private Context context;
+
+  private int selected;
+
+  public VideoProfileAdapter(Context context, int selected) {
+    this.context = context;
+    this.selected = selected;
+  }
+
+  @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    View v = LayoutInflater.from(parent.getContext()).inflate(zzm.zxecho.openlive.R.layout.video_profile_item, parent, false);
+    // set the view's size, margins, paddings and layout parameters
+
+    ProfileHolder ph = new ProfileHolder(v);
+    return ph;
+  }
+
+  @Override public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    String resolution = context.getResources().getStringArray(zzm.zxecho.openlive.R.array.string_array_resolutions)[position];
+    ((ProfileHolder) holder).resolution.setText(resolution);
+
+    String frameRate = context.getResources().getStringArray(zzm.zxecho.openlive.R.array.string_array_frame_rate)[position];
+    ((ProfileHolder) holder).frameRate.setText(frameRate);
+
+    String bitRate = context.getResources().getStringArray(zzm.zxecho.openlive.R.array.string_array_bit_rate)[position];
+    ((ProfileHolder) holder).bitRate.setText(bitRate);
+
+    holder.itemView.setBackgroundResource(position == selected ? zzm.zxecho.openlive.R.color.lightColorAccent : android.R.color.transparent);
+  }
+
+  @Override public int getItemCount() {
+    return context.getResources().getStringArray(zzm.zxecho.openlive.R.array.string_array_resolutions).length;
+  }
+
+  public int getSelected() {
+    return selected;
+  }
+
+  public class ProfileHolder extends RecyclerView.ViewHolder {
+    public TextView resolution;
+    public TextView frameRate;
+    public TextView bitRate;
+
+    public ProfileHolder(View itemView) {
+      super(itemView);
+
+      resolution = (TextView) itemView.findViewById(zzm.zxecho.openlive.R.id.resolution);
+      frameRate = (TextView) itemView.findViewById(zzm.zxecho.openlive.R.id.frame_rate);
+      bitRate = (TextView) itemView.findViewById(zzm.zxecho.openlive.R.id.bit_rate);
+
+      itemView.setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+          selected = getLayoutPosition();
+          notifyDataSetChanged();
+        }
+      });
+    }
+  }
+}

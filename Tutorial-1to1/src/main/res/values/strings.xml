@@ -7,5 +7,6 @@
   <!-- For formal released project, please use Dynamic Key
       http://docs.agora.io/en/user_guide/Component_and_Others/Dynamic_Key_User_Guide.html -->
   <!-- Tutorial Step 1 -->
-  <string name="agora_app_id">88c6cea1c8aa408b892d9d632a4d206b</string>
+  <!--<string name="agora_app_id">88c6cea1c8aa408b892d9d632a4d206b</string>-->
+  <string name="agora_app_id">809e410d8b0f4964a1ff3e3430000f1d</string>
 </resources>

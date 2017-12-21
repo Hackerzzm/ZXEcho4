@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".ui.LiveRoomActivity"
+    tools:context="zzm.zxecho.openlive.ui.LiveRoomActivity"
     >
 
-  <io.agora.openlive.ui.GridVideoViewContainer
+  <zzm.zxecho.openlive.ui.GridVideoViewContainer
       android:id="@+id/grid_video_view_container"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
@@ -27,7 +27,7 @@
       android:layout_height="match_parent"
       >
 
-    <io.agora.ui.AGLinearLayout
+    <zzm.zxecho.ui.AGLinearLayout
         android:id="@+id/top_area"
         android:layout_width="wrap_content"
         android:layout_height="54dp"
@@ -74,7 +74,7 @@
           android:src="@drawable/btn_close"
           />
 
-    </io.agora.ui.AGLinearLayout>
+    </zzm.zxecho.ui.AGLinearLayout>
 
     <LinearLayout
         android:id="@+id/bottom_container"
@@ -86,7 +86,7 @@
         android:orientation="vertical"
         >
 
-      <io.agora.ui.AGLinearLayout
+      <zzm.zxecho.ui.AGLinearLayout
           android:id="@+id/bottom_action_container"
           android:layout_width="wrap_content"
           android:layout_height="54dp"
@@ -125,7 +125,7 @@
             android:scaleType="center"
             android:src="@drawable/btn_mute"
             />
-      </io.agora.ui.AGLinearLayout>
+      </zzm.zxecho.ui.AGLinearLayout>
 
     </LinearLayout>
 

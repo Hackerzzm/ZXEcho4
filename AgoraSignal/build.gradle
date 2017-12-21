@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 14
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        applicationId "com.example.myapp1"
+        minSdkVersion 14
+        targetSdkVersion 21
+
+        /*ndk {
+            moduleName "libagorasdk2"
+        }*/
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    /*compile files('libs/agora-rtc-sdk.jar')
+    compile files('libs/AgoraSDK.jar')
+    compile files('libs/android-async-http-1.4.8.jar')
+    compile files('libs/crasheye.jar')
+    compile files('libs/fastjson.jar')*/
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}

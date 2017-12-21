@@ -1,0 +1,248 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:2:1-59:12
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:2:1-59:12
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:2:1-59:12
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:2:1-59:12
+MERGED from [com.orhanobut:logger:2.1.1] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\logger-2.1.1.aar\49111a50ff5bba406b404e772540698b\AndroidManifest.xml:2:1-8:12
+MERGED from [com.android.support:design:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\1dc3d9074ced4f28660b84a39863ce4b\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fc775e98f0cbe1fb18d069d6d2e62221\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:transition:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\f05c4cb7e719666bf99c7aef4248ba87\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a15b0c09613ca00141388fe95b4b5891\AndroidManifest.xml:17:1-31:12
+MERGED from [io.agora.rtc:full-sdk:2.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\full-sdk-2.0.0.aar\e1c4a36fd9ae48ae9f7d7a9acdec3870\AndroidManifest.xml:2:1-15:12
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\00f0750cfd3b99e878a7cda42dc7beab\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\849bc5306818befafe2418b228ab03e2\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\109ae891b1f8a5b6e20244eda96a5db1\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\92701d86af09291704e3a708772d1109\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\16bff7f3b24c63594c5b038763dc608a\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\3bafaa5495fb5e27b24cc24ccb797866\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\12299e54c06da110ea677779ffcd83ac\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\3fa104058159c65d92df579fdb7c75d9\AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\9e6a138bb7db0f7386271f979d49bb0e\AndroidManifest.xml:17:1-30:12
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:2:1-59:12
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:2:1-59:12
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:2:1-59:12
+	package
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:5:5-33
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:4:5-30
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:3:11-34
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:7:5-9:45
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:7:5-9:45
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:7:5-9:45
+MERGED from [com.orhanobut:logger:2.1.1] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\logger-2.1.1.aar\49111a50ff5bba406b404e772540698b\AndroidManifest.xml:6:5-43
+MERGED from [com.orhanobut:logger:2.1.1] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\logger-2.1.1.aar\49111a50ff5bba406b404e772540698b\AndroidManifest.xml:6:5-43
+MERGED from [com.android.support:design:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\1dc3d9074ced4f28660b84a39863ce4b\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\1dc3d9074ced4f28660b84a39863ce4b\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fc775e98f0cbe1fb18d069d6d2e62221\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fc775e98f0cbe1fb18d069d6d2e62221\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:transition:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\f05c4cb7e719666bf99c7aef4248ba87\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\f05c4cb7e719666bf99c7aef4248ba87\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a15b0c09613ca00141388fe95b4b5891\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a15b0c09613ca00141388fe95b4b5891\AndroidManifest.xml:21:5-23:54
+MERGED from [io.agora.rtc:full-sdk:2.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\full-sdk-2.0.0.aar\e1c4a36fd9ae48ae9f7d7a9acdec3870\AndroidManifest.xml:7:5-9:41
+MERGED from [io.agora.rtc:full-sdk:2.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\full-sdk-2.0.0.aar\e1c4a36fd9ae48ae9f7d7a9acdec3870\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\00f0750cfd3b99e878a7cda42dc7beab\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\00f0750cfd3b99e878a7cda42dc7beab\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\849bc5306818befafe2418b228ab03e2\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\849bc5306818befafe2418b228ab03e2\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\109ae891b1f8a5b6e20244eda96a5db1\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\109ae891b1f8a5b6e20244eda96a5db1\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\92701d86af09291704e3a708772d1109\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\92701d86af09291704e3a708772d1109\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\16bff7f3b24c63594c5b038763dc608a\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\16bff7f3b24c63594c5b038763dc608a\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\3bafaa5495fb5e27b24cc24ccb797866\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\3bafaa5495fb5e27b24cc24ccb797866\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\12299e54c06da110ea677779ffcd83ac\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\12299e54c06da110ea677779ffcd83ac\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\3fa104058159c65d92df579fdb7c75d9\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\3fa104058159c65d92df579fdb7c75d9\AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\9e6a138bb7db0f7386271f979d49bb0e\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\9e6a138bb7db0f7386271f979d49bb0e\AndroidManifest.xml:20:5-22:41
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:7:5-9:45
+INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:7:5-9:45
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\1dc3d9074ced4f28660b84a39863ce4b\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:9:13-42
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:8:13-39
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+		INJECTED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:12:5-67
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:12:22-64
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:13:5-71
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:13:22-68
+uses-permission#android.permission.CAMERA
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:14:5-65
+MERGED from [io.agora.rtc:full-sdk:2.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\full-sdk-2.0.0.aar\e1c4a36fd9ae48ae9f7d7a9acdec3870\AndroidManifest.xml:11:5-65
+MERGED from [io.agora.rtc:full-sdk:2.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\full-sdk-2.0.0.aar\e1c4a36fd9ae48ae9f7d7a9acdec3870\AndroidManifest.xml:11:5-65
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:14:22-62
+uses-permission#android.permission.BLUETOOTH
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:15:5-68
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:15:22-65
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:16:5-80
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:16:22-77
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:17:5-79
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:17:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:18:5-76
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:18:22-73
+uses-permission#android.permission.WAKE_LOCK
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:19:5-68
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:19:22-65
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:20:5-80
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:20:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:21:5-81
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:21:22-78
+application
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:24:3-58:19
+MERGED from [com.android.support:design:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\1dc3d9074ced4f28660b84a39863ce4b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\1dc3d9074ced4f28660b84a39863ce4b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fc775e98f0cbe1fb18d069d6d2e62221\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fc775e98f0cbe1fb18d069d6d2e62221\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\f05c4cb7e719666bf99c7aef4248ba87\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\f05c4cb7e719666bf99c7aef4248ba87\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a15b0c09613ca00141388fe95b4b5891\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a15b0c09613ca00141388fe95b4b5891\AndroidManifest.xml:25:5-29:19
+MERGED from [io.agora.rtc:full-sdk:2.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\full-sdk-2.0.0.aar\e1c4a36fd9ae48ae9f7d7a9acdec3870\AndroidManifest.xml:13:5-20
+MERGED from [io.agora.rtc:full-sdk:2.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\full-sdk-2.0.0.aar\e1c4a36fd9ae48ae9f7d7a9acdec3870\AndroidManifest.xml:13:5-20
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\00f0750cfd3b99e878a7cda42dc7beab\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\00f0750cfd3b99e878a7cda42dc7beab\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\849bc5306818befafe2418b228ab03e2\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\849bc5306818befafe2418b228ab03e2\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\109ae891b1f8a5b6e20244eda96a5db1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\109ae891b1f8a5b6e20244eda96a5db1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\92701d86af09291704e3a708772d1109\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\92701d86af09291704e3a708772d1109\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\16bff7f3b24c63594c5b038763dc608a\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\16bff7f3b24c63594c5b038763dc608a\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\3bafaa5495fb5e27b24cc24ccb797866\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\3bafaa5495fb5e27b24cc24ccb797866\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\12299e54c06da110ea677779ffcd83ac\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\12299e54c06da110ea677779ffcd83ac\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\3fa104058159c65d92df579fdb7c75d9\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\3fa104058159c65d92df579fdb7c75d9\AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\9e6a138bb7db0f7386271f979d49bb0e\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\9e6a138bb7db0f7386271f979d49bb0e\AndroidManifest.xml:24:5-28:19
+	android:label
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:29:7-39
+	android:icon
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:27:7-43
+	android:allowBackup
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:26:7-33
+	android:theme
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:28:7-38
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:25:7-56
+activity#zzm.zxecho.signal.ActivityLogin
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:30:9-36:20
+	android:label
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:31:19-51
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:30:19-65
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:32:13-35:29
+action#android.intent.action.MAIN
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:33:17-68
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:33:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:34:17-76
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:34:27-74
+activity#zzm.zxecho.openvcall.ui.MainActivity
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:37:5-46:16
+	android:screenOrientation
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:41:9-45
+	android:label
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:40:9-41
+	android:configChanges
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:39:9-70
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:38:9-60
+activity#zzm.zxecho.openvcall.ui.ChatActivity
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:47:5-52:49
+	android:screenOrientation
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:51:9-45
+	android:parentActivityName
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:50:9-74
+	android:configChanges
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:49:9-70
+	android:theme
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:52:9-47
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:48:9-60
+activity#zzm.zxecho.openvcall.ui.SettingsActivity
+ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:53:5-57:47
+	android:screenOrientation
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:57:9-45
+	android:label
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:56:9-47
+	android:configChanges
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:55:9-70
+	android:name
+		ADDED from D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\src\main\AndroidManifest.xml:54:9-64
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\1dc3d9074ced4f28660b84a39863ce4b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fc775e98f0cbe1fb18d069d6d2e62221\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fc775e98f0cbe1fb18d069d6d2e62221\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\f05c4cb7e719666bf99c7aef4248ba87\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\f05c4cb7e719666bf99c7aef4248ba87\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a15b0c09613ca00141388fe95b4b5891\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a15b0c09613ca00141388fe95b4b5891\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\00f0750cfd3b99e878a7cda42dc7beab\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\00f0750cfd3b99e878a7cda42dc7beab\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\849bc5306818befafe2418b228ab03e2\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\849bc5306818befafe2418b228ab03e2\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\109ae891b1f8a5b6e20244eda96a5db1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\109ae891b1f8a5b6e20244eda96a5db1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\92701d86af09291704e3a708772d1109\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\92701d86af09291704e3a708772d1109\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\16bff7f3b24c63594c5b038763dc608a\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\16bff7f3b24c63594c5b038763dc608a\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\3bafaa5495fb5e27b24cc24ccb797866\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\3bafaa5495fb5e27b24cc24ccb797866\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\12299e54c06da110ea677779ffcd83ac\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\12299e54c06da110ea677779ffcd83ac\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\3fa104058159c65d92df579fdb7c75d9\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\3fa104058159c65d92df579fdb7c75d9\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:design:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\1dc3d9074ced4f28660b84a39863ce4b\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:design:26.1.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\1dc3d9074ced4f28660b84a39863ce4b\AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\9e6a138bb7db0f7386271f979d49bb0e\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\9e6a138bb7db0f7386271f979d49bb0e\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\92010\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\9e6a138bb7db0f7386271f979d49bb0e\AndroidManifest.xml:26:13-58

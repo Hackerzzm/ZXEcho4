@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\build\\intermediates\\res\\merged\\debug\\layout_login.xml.flat",
+        "source": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\src\\main\\res\\layout\\login.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_launcher.png.flat",
+        "source": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\src\\main\\res\\drawable-ldpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    }
+]

@@ -1,0 +1,4 @@
+#Thu Dec 21 16:33:25 CST 2017
+base.0=D\:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal_Tutorial-1to1\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex

@@ -9,7 +9,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "io.agora.openvcall"
+        applicationId "zzm.zxecho.openvcall"
         minSdkVersion 16 // ICE_CREAM_SANDWICH
         targetSdkVersion 25
         versionCode 18

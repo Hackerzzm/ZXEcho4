@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AgoraSignal_OpenVideoCall/AgoraSignal_OpenVideoCall.iml" filepath="$PROJECT_DIR$/AgoraSignal_OpenVideoCall/AgoraSignal_OpenVideoCall.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AgoraSignal_Tutorial-1to1/myapp1.iml" filepath="$PROJECT_DIR$/AgoraSignal_Tutorial-1to1/myapp1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AgoraSignal/AgoraSignal.iml" filepath="$PROJECT_DIR$/AgoraSignal/AgoraSignal.iml" />
+      <module fileurl="file://D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\AgoraSignal_OpenVideoCall.iml" filepath="D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_OpenVideoCallERROR\AgoraSignal_OpenVideoCall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AgoraSignal_OpenVideoCallERROR/AgoraSignal_OpenVideoCallERROR.iml" filepath="$PROJECT_DIR$/AgoraSignal_OpenVideoCallERROR/AgoraSignal_OpenVideoCallERROR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AgoraSignal_Tutorial-1to1/AgoraSignal_Tutorial-1to1.iml" filepath="$PROJECT_DIR$/AgoraSignal_Tutorial-1to1/AgoraSignal_Tutorial-1to1.iml" />
       <module fileurl="file://$PROJECT_DIR$/OpenLive/OpenLive.iml" filepath="$PROJECT_DIR$/OpenLive/OpenLive.iml" />
       <module fileurl="file://$PROJECT_DIR$/OpenVideoCall/OpenVideoCall.iml" filepath="$PROJECT_DIR$/OpenVideoCall/OpenVideoCall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OpenVideoCall2/OpenVideoCall2.iml" filepath="$PROJECT_DIR$/OpenVideoCall2/OpenVideoCall2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Tutorial-1to1/Tutorial-1to1.iml" filepath="$PROJECT_DIR$/Tutorial-1to1/Tutorial-1to1.iml" />
       <module fileurl="file://$PROJECT_DIR$/ZXEcho4.iml" filepath="$PROJECT_DIR$/ZXEcho4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/agorademo/agorademo.iml" filepath="$PROJECT_DIR$/agorademo/agorademo.iml" />
+      <module fileurl="file://D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_Tutorial-1to1\myapp1.iml" filepath="D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_Tutorial-1to1\myapp1.iml" />
     </modules>
   </component>
 </project>

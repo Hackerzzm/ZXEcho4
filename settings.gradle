@@ -1,2 +1,3 @@
-include ':AgoraSignal_Tutorial-1to1', ':OpenLive', ':OpenVideoCall', ':Tutorial-1to1'
-include ':AgoraSignal_OpenVideoCall'
+include ':AgoraSignal_Tutorial-1to1', ':OpenLive', ':OpenVideoCall', ':Tutorial-1to1', ':agorademo', ':OpenVideoCall2'
+include ':AgoraSignal_OpenVideoCallERROR'
+include ':AgoraSignal'
