@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,6 +21,7 @@ import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
+import java.io.File;
 
 public class VideoChatViewActivity extends AppCompatActivity {
 
@@ -58,8 +60,6 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
   /*@Override protected void onResume() {
     super.onResume();
-
-
     if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO)
         && checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA)) {
       initAgoraEngineAndJoinChannel();
@@ -200,7 +200,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
   // Tutorial Step 2
   private void setupVideoProfile() {
     mRtcEngine.enableVideo();
-    mRtcEngine.setVideoProfile(Constants.VIDEO_PROFILE_120P, false);
+    mRtcEngine.setVideoProfile(Constants.VIDEO_PROFILE_240P, false);
     mRtcEngine.switchCamera();
     mRtcEngine.setParameters("{\"che.video.captureFormatNV21\": true}");
   }
@@ -212,6 +212,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
     surfaceView.setZOrderMediaOverlay(true);
     container.addView(surfaceView);
     mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_ADAPTIVE, 0));
+    mRtcEngine.setLogFile(Environment.getExternalStorageDirectory() + File.separator + "zxlog/3.log");
   }
 
   // Tutorial Step 4

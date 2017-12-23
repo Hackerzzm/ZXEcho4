@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Dec 21 14:24:03 CST 2017
+#Sat Dec 23 13:58:54 CST 2017
 4.path=classes.dex
 8.set=NATIVE_RESOURCE
 6.path=lib/armeabi-v7a/libHDACEngine.so

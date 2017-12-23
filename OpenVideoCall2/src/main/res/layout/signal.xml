@@ -32,7 +32,7 @@
           android:id="@+id/editTextName"
           android:layout_width="160dp"
           android:layout_height="wrap_content"
-          android:text="xxx"
+          android:text="746b001"
           />
       <Button
           android:id="@+id/buttonSwitch"

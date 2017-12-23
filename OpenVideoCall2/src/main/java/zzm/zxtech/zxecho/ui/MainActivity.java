@@ -107,7 +107,6 @@ public class MainActivity extends BaseActivity {
     i.putExtra(ConstantApp.ACTION_KEY_ENCRYPTION_KEY, encryption);
     i.putExtra(ConstantApp.ACTION_KEY_ENCRYPTION_MODE,
         getResources().getStringArray(zzm.zxtech.zxecho.R.array.encryption_mode_values)[vSettings().mEncryptionModeIndex]);
-
     startActivity(i);
   }
 

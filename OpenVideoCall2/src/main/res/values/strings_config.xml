@@ -6,7 +6,9 @@
   <!-- After you entered the App ID, remove <##> outside of Your App ID -->
   <!-- For formal released project, please use Dynamic Key
       http://docs.agora.io/en/user_guide/Component_and_Others/Dynamic_Key_User_Guide.html -->
-  <string name="private_app_id">88c6cea1c8aa408b892d9d632a4d206b</string>
+  <!--<string name="private_app_id">52afe0cfe2dd424da4c7c1604deb088a</string>-->
+  <!--<string name="private_app_id">88c6cea1c8aa408b892d9d632a4d206b</string>-->
+  <string name="private_app_id">2f6ef44c25f644d3a38146d35a449335</string>
 
   <string-array name="encryption_mode_values">
     <item>AES-128-XTS</item>

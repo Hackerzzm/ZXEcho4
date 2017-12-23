@@ -87,19 +87,21 @@ public class WorkerThread extends Thread {
   public final void disablePreProcessor() {
   }
 
-  public final void joinChannel(final String channel, int uid) {
+  public final void joinChannel(final String key, final String channel, int uid) {
     if (Thread.currentThread() != this) {
       log.warn("joinChannel() - worker thread asynchronously " + channel + " " + uid);
       Message envelop = new Message();
       envelop.what = ACTION_WORKER_JOIN_CHANNEL;
-      envelop.obj = new String[] { channel };
+      envelop.obj = new String[] { channel, key };
       envelop.arg1 = uid;
       mWorkerHandler.sendMessage(envelop);
       return;
     }
 
     ensureRtcEngineReadyLock();
-    mRtcEngine.joinChannel(null, channel, "OpenVCall", uid);
+    // TODO: 2017/12/23
+    Log.e("zzm debug!!!", "WorkerThread uid = " + uid);
+    mRtcEngine.joinChannel(key, channel, "OpenVCall", uid);
 
     mEngineConfig.mChannel = channel;
 
@@ -170,6 +172,7 @@ public class WorkerThread extends Thread {
     if (start) {
       mRtcEngine.switchCamera();
       //mRtcEngine.setParameters("{\"che.video.captureFormatNV21\": true}");
+
       mRtcEngine.setupLocalVideo(new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, uid));
       mRtcEngine.startPreview();
     } else {
@@ -188,6 +191,9 @@ public class WorkerThread extends Thread {
       } catch (Exception e) {
         log.error(Log.getStackTraceString(e));
         throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
+      }
+      if (mRtcEngine == null) {
+        Log.e("zzm debug!!!", "mRtcEngine = null");
       }
       mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
       mRtcEngine.enableVideo();
@@ -254,7 +260,7 @@ public class WorkerThread extends Thread {
           break;
         case ACTION_WORKER_JOIN_CHANNEL:
           String[] data = (String[]) msg.obj;
-          mWorkerThread.joinChannel(data[0], msg.arg1);
+          mWorkerThread.joinChannel(data[1], data[0], msg.arg1);
           break;
         case ACTION_WORKER_LEAVE_CHANNEL:
           String channel = (String) msg.obj;

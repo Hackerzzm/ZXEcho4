@@ -33,7 +33,7 @@ public class BasicTests extends ActivityInstrumentationTestCase2<MainActivity> {
 
     solo.unlockScreen();
 
-    solo.assertCurrentActivity("Expected MainActivity activity", "MainActivity");
+    solo.assertCurrentActivity("Expected SignalActivity activity", "SignalActivity");
     solo.clearEditText(0);
     solo.enterText(0, AUTO_TEST_CHANNEL_NAME);
     solo.waitForText(AUTO_TEST_CHANNEL_NAME, 1, 2000L);

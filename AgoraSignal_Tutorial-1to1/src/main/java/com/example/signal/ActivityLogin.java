@@ -37,7 +37,7 @@ public class ActivityLogin extends Activity {
 
   public static final boolean enableMediaCertificate = true;
   private static final boolean enableMedia = false;
-  //
+
   //    boolean isChecked(int id){
   //        CheckBox x = (CheckBox) findViewById(id);
   //        return x.isChecked();
@@ -124,13 +124,12 @@ public class ActivityLogin extends Activity {
         if (enableMedia) {
           if (x.isChecked()) {
             //                    m_agoraMedia.enableVideo();
-            //
+
             //                    FrameLayout localViewContainer = (FrameLayout) findViewById(R.id.video1);
             //                    mLocalView = m_agoraMedia.CreateRendererView(getApplicationContext());
             //                    localViewContainer.addView(mLocalView, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
             //                    m_agoraMedia.setupLocalVideo(new VideoCanvas(mLocalView));
             //                    m_agoraMedia.startPreview();
-
           } else {
             m_agoraMedia.disableVideo();
           }
@@ -511,8 +510,6 @@ public class ActivityLogin extends Activity {
           log("Join channel " + chanID + " successfully"); // + " docall " + doCall);
           //                    if (doCall) {
           //                        doCall = false;
-          //
-          //
           //                        if (callNum){
           //                            String peer = getEditTextValue(R.id.editDst);
           //                            String src = getEditTextValue(R.id.editSrc);
@@ -529,7 +526,6 @@ public class ActivityLogin extends Activity {
           //                            m_agoraAPI.channelInviteUser(chanID, peerName, 0);// (int)Long.parseLong(peerUid));
           //                        }
           //                    }
-
         }
 
         @Override public void onInviteReceived(String channleID, String account, int uid, String extra) {

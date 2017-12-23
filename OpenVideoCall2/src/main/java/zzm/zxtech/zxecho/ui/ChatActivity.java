@@ -76,29 +76,23 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
 
   @Override protected void initUIandEvent() {
     event().addEventHandler(this);
-
     Intent i = getIntent();
-
     String channelName = i.getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME);
-
-    final String encryptionKey = getIntent().getStringExtra(ConstantApp.ACTION_KEY_ENCRYPTION_KEY);
-
-    final String encryptionMode = getIntent().getStringExtra(ConstantApp.ACTION_KEY_ENCRYPTION_MODE);
-
+    final String encryptionKey = i.getStringExtra(ConstantApp.ACTION_KEY_ENCRYPTION_KEY);
+    final String encryptionMode = i.getStringExtra(ConstantApp.ACTION_KEY_ENCRYPTION_MODE);
+    String key = i.getStringExtra("key");
+    int uid = i.getIntExtra("uid", 0);
     doConfigEngine(encryptionKey, encryptionMode);
 
     mGridVideoViewContainer = (GridVideoViewContainer) findViewById(zzm.zxtech.zxecho.R.id.grid_video_view_container);
     mGridVideoViewContainer.setItemEventHandler(new VideoViewEventListener() {
       @Override public void onItemDoubleClick(View v, Object item) {
         log.debug("onItemDoubleClick " + v + " " + item + " " + mLayoutType);
-
         if (mUidsList.size() < 2) {
           return;
         }
-
         UserStatusData user = (UserStatusData) item;
         int uid = (user.mUid == 0) ? config().mUid : user.mUid;
-
         if (mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 1) {
           switchToSmallVideoView(uid);
         } else {
@@ -116,8 +110,9 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
 
     mGridVideoViewContainer.initViewContainer(this, 0, mUidsList); // first is now full view
     worker().preview(true, surfaceV, 0);
-
-    worker().joinChannel(channelName, config().mUid);
+    config().mUid = uid;
+    // TODO: 2017/12/23
+    worker().joinChannel(key, channelName, uid);
 
     TextView textChannelName = (TextView) findViewById(zzm.zxtech.zxecho.R.id.channel_name);
     textChannelName.setText(channelName);
@@ -133,9 +128,7 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
 
   public void onClickHideIME(View view) {
     log.debug("onClickHideIME " + view);
-
     closeIME(findViewById(zzm.zxtech.zxecho.R.id.msg_content));
-
     findViewById(zzm.zxtech.zxecho.R.id.msg_input_container).setVisibility(View.GONE);
     findViewById(zzm.zxtech.zxecho.R.id.bottom_action_end_call).setVisibility(View.VISIBLE);
     findViewById(zzm.zxtech.zxecho.R.id.bottom_action_container).setVisibility(View.VISIBLE);
@@ -292,7 +285,6 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
 
   public void onEndCallClicked(View view) {
     log.info("onEndCallClicked " + view);
-
     finish();
   }
 

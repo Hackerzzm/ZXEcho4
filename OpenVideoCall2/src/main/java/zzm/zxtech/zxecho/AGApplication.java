@@ -1,13 +1,24 @@
 package zzm.zxtech.zxecho;
 
 import android.app.Application;
+import android.content.Context;
 import zzm.zxtech.zxecho.model.CurrentUserSettings;
 import zzm.zxtech.zxecho.model.WorkerThread;
 
 public class AGApplication extends Application {
 
   public static final CurrentUserSettings mVideoSettings = new CurrentUserSettings();
+  private static Context applicationCtx;
   private WorkerThread mWorkerThread;
+
+  public static Context getContext() {
+    return applicationCtx;
+  }
+
+  @Override public void onCreate() {
+    super.onCreate();
+    applicationCtx = AGApplication.this.getApplicationContext();
+  }
 
   public synchronized void initWorkerThread() {
     if (mWorkerThread == null) {
