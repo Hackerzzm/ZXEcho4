@@ -18,13 +18,14 @@ public class AGApplication extends Application {
   @Override public void onCreate() {
     super.onCreate();
     applicationCtx = AGApplication.this.getApplicationContext();
+
+    //startService(new Intent(this,SignalService.class));
   }
 
   public synchronized void initWorkerThread() {
     if (mWorkerThread == null) {
       mWorkerThread = new WorkerThread(getApplicationContext());
       mWorkerThread.start();
-
       mWorkerThread.waitForReady();
     }
   }

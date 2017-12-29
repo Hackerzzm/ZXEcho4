@@ -10,15 +10,29 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.google.gson.Gson;
 import io.agora.AgoraAPI;
 import io.agora.AgoraAPIOnlySignal;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import org.json.JSONException;
+import org.json.JSONObject;
 import zzm.zxtech.util.ConstantUtil;
 import zzm.zxtech.zxecho.R;
-import zzm.zxtech.zxecho.model.ConstantApp;
+import zzm.zxtech.zxecho.statistics.VideoRecordDetailsVo;
+import zzm.zxtech.zxecho.statistics.VideoRecordVo;
 import zzm.zxtech.zxecho.ui.BaseActivity;
 import zzm.zxtech.zxecho.ui.ChatActivity;
 
@@ -28,9 +42,9 @@ public class SignalActivity extends BaseActivity {
 
   public static final String appID = "2f6ef44c25f644d3a38146d35a449335";
   public static final String certificate = "192be39be9b64c8f8393cb2f8225e5ba";
-
   private static final boolean enableMediaCertificate = true;
   private static final boolean enableMedia = false;
+  private static SignalActivity instant;
   private static int my_uid = 0;//onLoginSuccess时记录自己的uid
   private final String TAG = "zzm debug!!!";
   @BindView(R.id.buttonLogin) Button buttonLogin;
@@ -50,11 +64,17 @@ public class SignalActivity extends BaseActivity {
   @BindView(R.id.buttonChannelQueryUserNum) Button buttonChannelQueryUserNum;
   @BindView(R.id.buttonMessageChannelSend) Button buttonMessageChannelSend;
   private boolean isLogin = false;
-  private boolean m_iscalling = false;//记录是否加入通话通道，可以理解为是否正在通话中
   private boolean m_isjoin = false;//记录是否加入信令通道
+  private boolean m_iscalling = false;//记录是否在通话中
   private AgoraAPIOnlySignal m_agoraAPI;
   private String terminal_id = "";
-  private boolean is_being_called = false;//在查询频道用户数是用来判断是否能通话的。
+  private String channelName = "";
+  private boolean is_being_called = false;//只用于在查询频道用户数是用来判断是否能通话的
+  private String whoCalledAccount = "";
+  private int whoCalledUid = 0;
+  private OkHttpClient client;
+  private String videoRecordId = "";
+  private String videoRecordDetailsId = "";
 
   public static String hexlify(byte[] data) {
     char[] DIGITS_LOWER = {
@@ -91,23 +111,39 @@ public class SignalActivity extends BaseActivity {
     }
   }
 
+  public static void SignalLeave() {
+    instant.doLeave();
+  }
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.signal);
     ButterKnife.bind(this);
+    OkhttpClientInit();
     initViews();
+    instant = this;
+
+    Intent intent = new Intent(this, SignalService.class);
+    startService(intent);
+    finish();
+    try {
+      Thread.sleep(5000);
+      finish();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override protected void initUIandEvent() {
-
   }
 
   @Override protected void deInitUIandEvent() {
-
   }
 
   private void initViews() {
+    //terminal_id = "746b001";//ConstantUtil.getId(null)
     terminal_id = ConstantUtil.getId(null);
+    channelName = "channel_" + terminal_id;
     Log.e(TAG, "get terminal_id = " + terminal_id);
     m_agoraAPI = AgoraAPIOnlySignal.getInstance(this, appID);
     m_agoraAPI.callbackSet(new AgoraAPI.CallBack() {
@@ -183,14 +219,20 @@ public class SignalActivity extends BaseActivity {
         Log.e(TAG, "onChannelQueryUserNumResult \nchannelID = " + channelID + "\necode = " + ecode + "\nnum=" + num);
         if (is_being_called) {
           if (num < 6) {
-            m_agoraAPI.channelInviteAccept(channelID, terminal_id, my_uid);
-            doJoin();
+            try {
+              Thread.sleep(2000);
+              Log.e(TAG, "I accept！");
+              m_agoraAPI.channelInviteAccept(channelID, whoCalledAccount, whoCalledUid);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
           } else {
             m_agoraAPI.channelInviteRefuse(channelID, terminal_id, my_uid, "人数过多");
           }
           is_being_called = false;
         } else {
           if (num < 2) {
+            Log.e(TAG, "onChannelQueryUserNumResult 没其他人在这个频道了");
             doLeave();
           }
         }
@@ -228,21 +270,105 @@ public class SignalActivity extends BaseActivity {
 
       @Override public void onInviteReceived(String channelID, String account, int uid, String extra) {
         super.onInviteReceived(channelID, account, uid, extra);
-        if (m_iscalling) {
+        Log.e(TAG, "onInviteReceived m_iscalling = " + m_iscalling);
+        if (m_iscalling) {//正在通话中
+          whoCalledAccount = account;
+          whoCalledUid = uid;
           is_being_called = true;
           m_agoraAPI.channelQueryUserNum("channel_" + terminal_id);
-        } else {
-          doJoin();
-          m_agoraAPI.channelInviteAccept(channelID, terminal_id, my_uid);
+        } else {//不在通话
+          doJoin(channelName);
+          saveVideoRecordPost();
+          try {
+            Thread.sleep(2000);
+            Log.e(TAG, "I accept！");
+            m_agoraAPI.channelInviteAccept(channelID, account, uid);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
         }
+      }
+
+      @Override public void onInviteAcceptedByPeer(String channelID, String account, int uid, String extra) {
+        super.onInviteAcceptedByPeer(channelID, account, uid, extra);
+        Log.e(TAG, "onInviteAcceptedByPeer\n channelID = " + channelID + "\naccount = " + account + "\nuid = " + uid + "\nextra = " + extra);
+        doJoin(channelID);
       }
     });
   }
 
-  // R.id.buttonSendMsg
+  private void OkhttpClientInit() {
+    client = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).readTimeout(10, TimeUnit.SECONDS).build();
+  }
+
+  private void saveVideoRecordPost() {
+    VideoRecordVo videoRecordVo = new VideoRecordVo();
+    videoRecordVo.setBeCalledId(terminal_id);
+    videoRecordVo.setCallType("1");
+    videoRecordVo.setType("0");
+    VideoRecordDetailsVo videoRecordDetailsVo = new VideoRecordDetailsVo();
+    videoRecordDetailsVo.setUserId(terminal_id);
+    videoRecordDetailsVo.setUserIp("");
+    videoRecordDetailsVo.setType("2");
+    videoRecordDetailsVo.setCallType("1");
+    RequestBody requestBodyPost = new FormBody.Builder().add("httpCmd", "saveVideoRecord")
+        .add("videoRecordVo", new Gson().toJson(videoRecordVo))
+        .add("videoRecordDetailsVo", new Gson().toJson(videoRecordDetailsVo))
+        .build();
+    Request requestPost = new Request.Builder().url(ConstantUtil.JAVA_STATISTICS_URL).post(requestBodyPost).build();
+    client.newCall(requestPost).enqueue(new Callback() {
+      @Override public void onFailure(Call call, IOException e) {
+
+      }
+
+      @Override public void onResponse(Call call, Response response) throws IOException {
+        final String resultStr = response.body().string();
+        runOnUiThread(new Runnable() {
+          @Override public void run() {
+            Log.e("zzm debug!!!", resultStr);
+            try {
+              JSONObject resultObj = new JSONObject(resultStr);
+              JSONObject contentObj = resultObj.getJSONObject("content");
+              videoRecordId = contentObj.getString("videoRecordId");
+              videoRecordDetailsId = contentObj.getString("videoRecordDetailsId");
+            } catch (JSONException e) {
+              e.printStackTrace();
+            }
+          }
+        });
+      }
+    });
+  }
+
+  private void updateVideoRecordPost() {
+    VideoRecordVo videoRecordVo = new VideoRecordVo();
+    videoRecordVo.setVideoRecordId(videoRecordId);
+    VideoRecordDetailsVo videoRecordDetailsVo = new VideoRecordDetailsVo();
+    videoRecordDetailsVo.setVideoRecordDetailsId(videoRecordDetailsId);
+    RequestBody requestBodyPost = new FormBody.Builder().add("httpCmd", "updateVideoRecord")
+        .add("videoRecordVo", new Gson().toJson(videoRecordVo))
+        .add("videoRecordDetailsVo", new Gson().toJson(videoRecordDetailsVo))
+        .build();
+    Request requestPost = new Request.Builder().url(ConstantUtil.JAVA_STATISTICS_URL).post(requestBodyPost).build();
+    client.newCall(requestPost).enqueue(new Callback() {
+      @Override public void onFailure(Call call, IOException e) {
+
+      }
+
+      @Override public void onResponse(Call call, Response response) throws IOException {
+        final String resultStr = response.body().string();
+        runOnUiThread(new Runnable() {
+          @Override public void run() {
+            Log.e("zzm debug!!!", resultStr);
+          }
+        });
+      }
+    });
+  }
+
   @OnClick({
       R.id.buttonLogin, R.id.buttonSwitch, R.id.buttonInstMsg, R.id.buttonJoin, R.id.buttonEnv, R.id.buttonQueryUserStatus,
-      R.id.buttonChannelQueryUserNum, R.id.buttonCall
+      R.id.buttonChannelQueryUserNum, R.id.buttonCall, R.id.buttonMessageChannelSend
   }) public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.buttonLogin:
@@ -280,33 +406,38 @@ public class SignalActivity extends BaseActivity {
         if (m_isjoin) {
           doLeave();
         } else {
-          doJoin();
+          doJoin(editTextChannelName.getText().toString().trim());
         }
         break;
       case R.id.buttonCall:
         String channelName2 = editTextChannelName.getText().toString().trim();
         String peer = editTextCallUser.getText().toString().trim();
         String src = editTextName.getText().toString().trim();
-        if (m_iscalling) {
-          m_iscalling = false;
+        if (buttonCall.getText().toString().equals("End")) {
           buttonCall.setText("Call");
           m_agoraAPI.channelInviteEnd(channelName2, peer, 0);
           doLeave();
         } else {
-          m_iscalling = true;
           buttonCall.setText("End");
           // TODO: 2017/12/20 channelInviteUser;channelInviteUser2;channelInviteDTMF;channelInviteAccept;channelInviteRefuse;channelInviteEnd;
-          m_agoraAPI.channelInvitePhone3(channelName2, peer, src, "{\"sip_header:myheader\":\"gogo\"}");// (int)Long.parseLong(peerUid))
-          doJoin();
+          //m_agoraAPI.channelInvitePhone3(channelName2, peer, src, "{\"sip_header:myheader\":\"gogo\"}");// (int)Long.parseLong(peerUid))
+          m_agoraAPI.channelInviteUser2(channelName2, peer, "{\"sip_header:myheader\":\"gogo\"}");
         }
         break;
-      /*case R.id.buttonSendMsg:
+      case R.id.buttonMessageChannelSend:
         if (!isLogin) {
           return;
         }
-        String channelName1 = editTextChannelName.getText().toString().trim();
-        m_agoraAPI.messageChannelSend(channelName1, "hello world ", "");
-        break;*/
+        Gson gson = new Gson();
+        Map<String, Object> msg = new HashMap<>();
+        msg.put("code", 105);
+        msg.put("from", terminal_id);
+        Map<String, Object> content = new HashMap();
+        content.put("msg", terminal_id + " is about to leave");
+        msg.put("content", content);
+        Log.e(TAG, gson.toJson(msg));
+        m_agoraAPI.messageChannelSend(channelName, gson.toJson(msg), "");
+        break;
       case R.id.buttonEnv:
         break;
       case R.id.buttonQueryUserStatus:
@@ -345,17 +476,23 @@ public class SignalActivity extends BaseActivity {
     });
   }
 
-  private void doJoin() {
+  private void doJoin(final String channelName) {
+    if (m_iscalling) {
+      Log.e(TAG, "已经在通话中不执行doJoin");
+      return;
+    } else {
+      Log.e(TAG, "不在通话中，执行doJoin");
+    }
+    m_iscalling = true;
     runOnUiThread(new Runnable() {
       @Override public void run() {
         final Button btn = (Button) findViewById(R.id.buttonJoin);
         m_isjoin = true;
         btn.setText("Leave");
-        String channelName = editTextChannelName.getText().toString().trim();
+        //String channelName = "channel_" + terminal_id;//editTextChannelName.getText().toString().trim()
         Log.e(TAG, "Join channel " + channelName);
         m_agoraAPI.channelJoin(channelName);
-        // TODO: 2017/12/20 enableMedia的用处？
-        vSettings().mChannelName = channelName;
+        /*vSettings().mChannelName = channelName;
         vSettings().mEncryptionKey = "";
         vSettings().mEncryptionModeIndex = 0;
         Intent i = new Intent(SignalActivity.this, ChatActivity.class);
@@ -380,19 +517,25 @@ public class SignalActivity extends BaseActivity {
         }
         i.putExtra("key", key);
         //getResources().getStringArray(zzm.zxtech.zxecho.R.array.encryption_mode_values)[vSettings().mEncryptionModeIndex]
-        startActivity(i);
+        startActivity(i);*/
       }
     });
   }
 
   private void doLeave() {
+    Log.e(TAG, "at doLeave");
+    m_iscalling = false;
     runOnUiThread(new Runnable() {
       @Override public void run() {
         final Button btn = (Button) findViewById(R.id.buttonJoin);
         m_isjoin = false;
         btn.setText("Join");
+        final Button btn2 = (Button) findViewById(R.id.buttonCall);
+        btn2.setText("Call");
         String channelName = editTextChannelName.getText().toString().trim();
         m_agoraAPI.channelLeave(channelName);
+        ChatActivity.ChatLeave();
+        updateVideoRecordPost();
       }
     });
   }

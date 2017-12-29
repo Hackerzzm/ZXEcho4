@@ -26,6 +26,7 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>-->
     </activity>
+    <service android:name="zzm.zxtech.signal.SignalService"/>
     <activity
         android:name=".ui.ChatActivity"
         android:configChanges="orientation|keyboardHidden|screenSize"

@@ -37,6 +37,7 @@ import zzm.zxtech.propeller.UserStatusData;
 import zzm.zxtech.propeller.VideoInfoData;
 import zzm.zxtech.propeller.preprocessing.VideoPreProcessing;
 import zzm.zxtech.propeller.ui.RtlLinearLayoutManager;
+import zzm.zxtech.signal.SignalActivity;
 import zzm.zxtech.zxecho.model.AGEventHandler;
 import zzm.zxtech.zxecho.model.ConstantApp;
 import zzm.zxtech.zxecho.model.Message;
@@ -47,6 +48,7 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
   public static final int LAYOUT_TYPE_DEFAULT = 0;
   public static final int LAYOUT_TYPE_SMALL = 1;
   private final static Logger log = LoggerFactory.getLogger(ChatActivity.class);
+  private static ChatActivity instant;
   // should only be modified under UI thread
   private final HashMap<Integer, SurfaceView> mUidsList = new HashMap<>(); // uid = 0 || uid == EngineConfig.mUid
   public int mLayoutType = LAYOUT_TYPE_DEFAULT;
@@ -61,9 +63,17 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
   private VideoPreProcessing mVideoPreProcessing;
   private SmallVideoViewAdapter mSmallVideoViewAdapter;
 
+  public static void ChatLeave() {
+    if (instant != null) {
+      instant.finish();
+    }
+  }
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(zzm.zxtech.zxecho.R.layout.activity_chat);
+    instant = this;
+    checkSelfPermissions();
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,7 +121,7 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
     mGridVideoViewContainer.initViewContainer(this, 0, mUidsList); // first is now full view
     worker().preview(true, surfaceV, 0);
     config().mUid = uid;
-    // TODO: 2017/12/23
+
     worker().joinChannel(key, channelName, uid);
 
     TextView textChannelName = (TextView) findViewById(zzm.zxtech.zxecho.R.id.channel_name);
@@ -271,10 +281,8 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
 
   @Override protected void deInitUIandEvent() {
     optionalDestroy();
-
     doLeaveChannel();
     event().removeEventHandler(this);
-
     mUidsList.clear();
   }
 
@@ -285,6 +293,7 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
 
   public void onEndCallClicked(View view) {
     log.info("onEndCallClicked " + view);
+    SignalActivity.SignalLeave();
     finish();
   }
 
@@ -311,29 +320,22 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
     if (mUidsList.size() == 0) {
       return;
     }
-
     SurfaceView surfaceV = getLocalView();
     ViewParent parent;
     if (surfaceV == null || (parent = surfaceV.getParent()) == null) {
       log.warn("onVoiceChatClicked " + view + " " + surfaceV);
       return;
     }
-
     RtcEngine rtcEngine = rtcEngine();
     mVideoMuted = !mVideoMuted;
-
     if (mVideoMuted) {
       rtcEngine.disableVideo();
     } else {
       rtcEngine.enableVideo();
     }
-
     ImageView iv = (ImageView) view;
-
     iv.setImageResource(mVideoMuted ? zzm.zxtech.zxecho.R.drawable.btn_video : zzm.zxtech.zxecho.R.drawable.btn_voice);
-
     hideLocalView(mVideoMuted);
-
     if (mVideoMuted) {
       resetToVideoDisabledUI();
     } else {

@@ -12,8 +12,8 @@ android {
         applicationId "zzm.zxtech.zxecho"
         minSdkVersion 16 // ICE_CREAM_SANDWICH
         targetSdkVersion 25
-        versionCode 18
-        versionName "x.y.z"
+        versionCode 19
+        versionName "00.00.19"
 
         jackOptions {
             enabled false
@@ -67,5 +67,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.google.code.gson:gson:2.7'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.6.3'
 }

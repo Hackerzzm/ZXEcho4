@@ -11,7 +11,7 @@ import zzm.zxtech.zxecho.AGApplication;
 
 public class ConstantUtil {
   public static final String APP_PREFERENCE_FILE = "ZXTABLET_PREFERENCE";
-
+  public static final String JAVA_STATISTICS_URL = "http://172.16.10.58:8080/SmartElevatorGuard/f/mobile/applogin";
   public static String getId(Context ctx) {
     int MODE = Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE;
     String id = "1111111";

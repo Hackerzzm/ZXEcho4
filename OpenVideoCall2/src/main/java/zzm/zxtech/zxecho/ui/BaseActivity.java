@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewConfigurationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -75,7 +76,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }, 500);
   }
 
-  private boolean checkSelfPermissions() {
+  public boolean checkSelfPermissions() {
     return checkSelfPermission(Manifest.permission.RECORD_AUDIO, ConstantApp.PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(
         Manifest.permission.CAMERA, ConstantApp.PERMISSION_REQ_ID_CAMERA) && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,
         ConstantApp.PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE);
@@ -138,6 +139,9 @@ public abstract class BaseActivity extends AppCompatActivity {
   }
 
   protected final MyEngineEventHandler event() {
+    if (((AGApplication) getApplication()).getWorkerThread() == null) {
+      Log.w("zzm debug!!!", "getWorkerThread return null");
+    }
     return ((AGApplication) getApplication()).getWorkerThread().eventHandler();
   }
 

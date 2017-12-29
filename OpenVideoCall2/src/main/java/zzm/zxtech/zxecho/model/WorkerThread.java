@@ -18,6 +18,7 @@ import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zzm.zxtech.propeller.Constant;
+import zzm.zxtech.util.ConstantUtil;
 import zzm.zxtech.zxecho.R;
 
 public class WorkerThread extends Thread {
@@ -171,8 +172,9 @@ public class WorkerThread extends Thread {
     ensureRtcEngineReadyLock();
     if (start) {
       mRtcEngine.switchCamera();
-      //mRtcEngine.setParameters("{\"che.video.captureFormatNV21\": true}");
-
+      if (!ConstantUtil.getId(null).equals("1111111")) {
+        mRtcEngine.setParameters("{\"che.video.captureFormatNV21\": true}");
+      }
       mRtcEngine.setupLocalVideo(new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, uid));
       mRtcEngine.startPreview();
     } else {

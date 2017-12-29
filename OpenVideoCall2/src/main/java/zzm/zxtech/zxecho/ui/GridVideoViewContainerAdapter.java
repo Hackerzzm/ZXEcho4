@@ -38,7 +38,6 @@ public class GridVideoViewContainerAdapter extends VideoViewAdapter {
         DividerX = 2;
         DividerY = 2;
       }
-
       mItemWidth = outMetrics.widthPixels / DividerX;
       mItemHeight = outMetrics.heightPixels / DividerY;
     }
@@ -76,12 +75,10 @@ public class GridVideoViewContainerAdapter extends VideoViewAdapter {
 
   @Override public long getItemId(int position) {
     UserStatusData user = mUsers.get(position);
-
     SurfaceView view = user.mView;
     if (view == null) {
       throw new NullPointerException("SurfaceView destroyed for user " + (user.mUid & 0xFFFFFFFFL) + " " + user.mStatus + " " + user.mVolume);
     }
-
     return (String.valueOf(user.mUid) + System.identityHashCode(view)).hashCode();
   }
 }

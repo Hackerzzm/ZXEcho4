@@ -104,7 +104,7 @@
           android:id="@+id/editTextChannelName"
           android:layout_width="160dp"
           android:layout_height="wrap_content"
-          android:text="demoroom1"
+          android:text="channel_746b001"
           />
     </LinearLayout>
   </LinearLayout>
