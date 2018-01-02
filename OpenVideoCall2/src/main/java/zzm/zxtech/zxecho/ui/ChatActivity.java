@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,6 +52,7 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
   private static ChatActivity instant;
   // should only be modified under UI thread
   private final HashMap<Integer, SurfaceView> mUidsList = new HashMap<>(); // uid = 0 || uid == EngineConfig.mUid
+  private final String TAG = "zzm debug!!!";
   public int mLayoutType = LAYOUT_TYPE_DEFAULT;
   private GridVideoViewContainer mGridVideoViewContainer;
   private RelativeLayout mSmallVideoViewDock;
@@ -433,6 +435,7 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         }
 
         SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
+        Log.e(TAG, "mUidsList.put uid = " + uid);
         mUidsList.put(uid, surfaceV);
 
         boolean useDefaultLayout = mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 2;
@@ -456,7 +459,7 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
 
   @Override public void onJoinChannelSuccess(String channel, final int uid, int elapsed) {
     log.debug("onJoinChannelSuccess " + channel + " " + (uid & 0xFFFFFFFFL) + " " + elapsed);
-
+    Log.e(TAG, "onJoinChannelSuccess " + channel + " " + (uid & 0xFFFFFFFFL) + " " + elapsed);
     runOnUiThread(new Runnable() {
       @Override public void run() {
         if (isFinishing()) {

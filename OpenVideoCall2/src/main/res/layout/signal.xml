@@ -32,7 +32,7 @@
           android:id="@+id/editTextName"
           android:layout_width="160dp"
           android:layout_height="wrap_content"
-          android:text="746b001"
+          android:text="736g001"
           />
       <Button
           android:id="@+id/buttonSwitch"
@@ -104,7 +104,7 @@
           android:id="@+id/editTextChannelName"
           android:layout_width="160dp"
           android:layout_height="wrap_content"
-          android:text="channel_746b001"
+          android:text="channel_736g001"
           />
     </LinearLayout>
   </LinearLayout>

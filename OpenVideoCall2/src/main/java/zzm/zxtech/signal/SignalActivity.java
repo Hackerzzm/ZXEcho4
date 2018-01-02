@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.google.gson.Gson;
 import io.agora.AgoraAPI;
@@ -19,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import zzm.zxtech.util.ConstantUtil;
 import zzm.zxtech.zxecho.R;
+import zzm.zxtech.zxecho.model.ConstantApp;
 import zzm.zxtech.zxecho.statistics.VideoRecordDetailsVo;
 import zzm.zxtech.zxecho.statistics.VideoRecordVo;
 import zzm.zxtech.zxecho.ui.BaseActivity;
@@ -118,10 +119,10 @@ public class SignalActivity extends BaseActivity {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.signal);
-    ButterKnife.bind(this);
+    /*ButterKnife.bind(this);
     OkhttpClientInit();
     initViews();
-    instant = this;
+    instant = this;*/
 
     Intent intent = new Intent(this, SignalService.class);
     startService(intent);
@@ -147,14 +148,13 @@ public class SignalActivity extends BaseActivity {
     Log.e(TAG, "get terminal_id = " + terminal_id);
     m_agoraAPI = AgoraAPIOnlySignal.getInstance(this, appID);
     m_agoraAPI.callbackSet(new AgoraAPI.CallBack() {
-      // TODO: 2017/12/20 监听回调
       //https://docs.agora.io/cn/2.0.2/addons/Signaling/API%20Reference/signal_android?platform=Android
       //登录成功回调
       @Override public void onLoginSuccess(int uid, int fd) {
         //登录成功回调
         super.onLoginSuccess(uid, fd);
         my_uid = uid;
-        m_agoraAPI.setAttr("uid", uid + "");
+        m_agoraAPI.setAttr("uid", my_uid + "");
         Log.e(TAG, "onLoginSuccess \nfd = " + fd + "\nuid = " + uid);
       }
 
@@ -210,7 +210,8 @@ public class SignalActivity extends BaseActivity {
       @Override public void onChannelUserLeaved(String account, int uid) {
         super.onChannelUserLeaved(account, uid);
         Log.e(TAG, "onChannelUserLeaved \naccount = " + account + "\nuid = " + uid);
-        m_agoraAPI.channelQueryUserNum("channel_" + terminal_id);
+        //m_agoraAPI.channelQueryUserNum(channelName);
+        m_agoraAPI.channelQueryUserNum(editTextChannelName.getText().toString().trim());
       }
 
       //查询指定频道的用户数量成功后回调
@@ -277,7 +278,7 @@ public class SignalActivity extends BaseActivity {
           is_being_called = true;
           m_agoraAPI.channelQueryUserNum("channel_" + terminal_id);
         } else {//不在通话
-          doJoin(channelName);
+          doJoin();
           saveVideoRecordPost();
           try {
             Thread.sleep(2000);
@@ -292,7 +293,7 @@ public class SignalActivity extends BaseActivity {
       @Override public void onInviteAcceptedByPeer(String channelID, String account, int uid, String extra) {
         super.onInviteAcceptedByPeer(channelID, account, uid, extra);
         Log.e(TAG, "onInviteAcceptedByPeer\n channelID = " + channelID + "\naccount = " + account + "\nuid = " + uid + "\nextra = " + extra);
-        doJoin(channelID);
+        doJoin();
       }
     });
   }
@@ -406,7 +407,7 @@ public class SignalActivity extends BaseActivity {
         if (m_isjoin) {
           doLeave();
         } else {
-          doJoin(editTextChannelName.getText().toString().trim());
+          doJoin();
         }
         break;
       case R.id.buttonCall:
@@ -476,7 +477,7 @@ public class SignalActivity extends BaseActivity {
     });
   }
 
-  private void doJoin(final String channelName) {
+  private void doJoin() {
     if (m_iscalling) {
       Log.e(TAG, "已经在通话中不执行doJoin");
       return;
@@ -489,10 +490,11 @@ public class SignalActivity extends BaseActivity {
         final Button btn = (Button) findViewById(R.id.buttonJoin);
         m_isjoin = true;
         btn.setText("Leave");
-        //String channelName = "channel_" + terminal_id;//editTextChannelName.getText().toString().trim()
+        String channelName = editTextChannelName.getText().toString().trim();
         Log.e(TAG, "Join channel " + channelName);
         m_agoraAPI.channelJoin(channelName);
-        /*vSettings().mChannelName = channelName;
+
+        vSettings().mChannelName = channelName;
         vSettings().mEncryptionKey = "";
         vSettings().mEncryptionModeIndex = 0;
         Intent i = new Intent(SignalActivity.this, ChatActivity.class);
@@ -517,7 +519,7 @@ public class SignalActivity extends BaseActivity {
         }
         i.putExtra("key", key);
         //getResources().getStringArray(zzm.zxtech.zxecho.R.array.encryption_mode_values)[vSettings().mEncryptionModeIndex]
-        startActivity(i);*/
+        startActivity(i);
       }
     });
   }
