@@ -451,7 +451,12 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         } else {
           int bigBgUid = mSmallVideoViewAdapter == null ? uid : mSmallVideoViewAdapter.getExceptedUid();
           log.debug("doRenderRemoteUi LAYOUT_TYPE_SMALL " + (uid & 0xFFFFFFFFL) + " " + (bigBgUid & 0xFFFFFFFFL));
-          switchToSmallVideoView(bigBgUid);
+          try {
+            switchToSmallVideoView(bigBgUid);
+          } catch (NullPointerException e) {
+            Log.e(TAG, "一个空指针是什么鬼");
+            e.printStackTrace();
+          }
         }
       }
     });
