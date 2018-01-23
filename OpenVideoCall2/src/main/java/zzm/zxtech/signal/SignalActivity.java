@@ -47,6 +47,7 @@ public class SignalActivity extends BaseActivity {
   private static final boolean enableMedia = false;
   private static SignalActivity instant;
   private static int my_uid = 0;//onLoginSuccess时记录自己的uid
+  private static boolean m_iscalling = false;//记录是否在通话中
   private final String TAG = "zzm debug!!!";
   @BindView(R.id.buttonLogin) Button buttonLogin;
   @BindView(R.id.editTextName) EditText editTextName;//用户1
@@ -66,7 +67,6 @@ public class SignalActivity extends BaseActivity {
   @BindView(R.id.buttonMessageChannelSend) Button buttonMessageChannelSend;
   private boolean isLogin = false;
   private boolean m_isjoin = false;//记录是否加入信令通道
-  private boolean m_iscalling = false;//记录是否在通话中
   private AgoraAPIOnlySignal m_agoraAPI;
   private String terminal_id = "";
   private String channelName = "";
@@ -113,7 +113,9 @@ public class SignalActivity extends BaseActivity {
   }
 
   public static void SignalLeave() {
-    instant.doLeave();
+    if (instant != null) {
+      instant.doLeave();
+    }
   }
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +178,11 @@ public class SignalActivity extends BaseActivity {
         Log.e(TAG, "onMessageSendSuccess");
       }
 
+      @Override public void onInviteRefusedByPeer(String channelID, String account, int uid, String extra) {
+        super.onInviteRefusedByPeer(channelID, account, uid, extra);
+        Log.e(TAG, "onInviteRefusedByPeer");
+      }
+
       //Message发送失败回调
       @Override public void onMessageSendError(String messageID, int ecode) {
         super.onMessageSendError(messageID, ecode);
@@ -228,7 +235,7 @@ public class SignalActivity extends BaseActivity {
               e.printStackTrace();
             }
           } else {
-            m_agoraAPI.channelInviteRefuse(channelID, terminal_id, my_uid, "人数过多");
+            m_agoraAPI.channelInviteRefuse(channelID, terminal_id, my_uid, "{msg:\"人数过多\"}");
           }
           is_being_called = false;
         } else {

@@ -7,6 +7,13 @@
                     "source": "D:\\AndroidStudioProjects\\ZXEcho4\\AgoraSignal\\src\\main\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "2",
+                        "startColumns": "2",
+                        "startOffsets": "53",
+                        "endColumns": "46",
+                        "endOffsets": "97"
+                    },
+                    "to": {
+                        "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
                         "endColumns": "48",

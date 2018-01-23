@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_Tutorial-1to1\src\main\assets"><file name="logback.xml" path="D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_Tutorial-1to1\src\main\assets\logback.xml"/></source><source path="D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_Tutorial-1to1\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\AndroidStudioProjects\ZXEcho4\AgoraSignal_Tutorial-1to1\src\debug\assets"/></dataSet></merger>

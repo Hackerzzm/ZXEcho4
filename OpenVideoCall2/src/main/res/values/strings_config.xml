@@ -22,7 +22,7 @@
     <item>320x180</item>
     // 180P
     <item>320x240</item>
-    // 240P the default one
+    // 240P the default one 邹哲明修改ConstantApp.DEFAULT_PROFILE_IDX = 0修改为120p;getVideoProfileIndex()也修改了
     <item>640x360</item>
     // 360P
     <item>640x480</item>

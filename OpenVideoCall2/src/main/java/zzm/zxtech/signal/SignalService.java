@@ -2,6 +2,7 @@ package zzm.zxtech.signal;
 
 import android.app.Service;
 import android.content.Intent;
+import android.hardware.Camera;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -26,6 +27,7 @@ import okhttp3.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 import zzm.zxtech.util.ConstantUtil;
+import zzm.zxtech.util.ShellUtils;
 import zzm.zxtech.zxecho.AGApplication;
 import zzm.zxtech.zxecho.model.ConstantApp;
 import zzm.zxtech.zxecho.statistics.VideoRecordDetailsVo;
@@ -56,6 +58,7 @@ public class SignalService extends Service {
   private String videoRecordId = "";
   private String videoRecordDetailsId = "";
   private OkHttpClient client;
+  private Camera camera;
   private Handler signalHandler = new Handler() {
     @Override public void handleMessage(Message msg) {
       super.handleMessage(msg);
@@ -152,12 +155,7 @@ public class SignalService extends Service {
     super.onCreate();
     initViews();
     instant = this;
-
-    long expiredTimeWrong = new Date().getTime() / 1000 + 3600;
-    long expiredTime = System.currentTimeMillis() / 1000 + 3600;
-    String token = calcToken(appID, certificate, terminal_id, expiredTime);
-    //m_agoraAPI.login(appID, account, token, 0, "");
-    m_agoraAPI.login2(appID, terminal_id, token, 0, "", 60, 5);
+    doLogin();
   }
 
   public String calcToken(String appID, String certificate, String account, long expiredTime) {
@@ -190,12 +188,14 @@ public class SignalService extends Service {
       @Override public void onLoginFailed(int ecode) {
         super.onLoginFailed(ecode);
         Log.e(TAG, "SignalService onLoginFailed ecode = " + ecode);
+        doLogin();
       }
 
       //退出登录回调
       @Override public void onLogout(int ecode) {
         super.onLogout(ecode);
         Log.e(TAG, "SignalService onLogout ecode = " + ecode);
+        doLogin();
       }
 
       //Message发送成功回调
@@ -255,7 +255,7 @@ public class SignalService extends Service {
               e.printStackTrace();
             }
           } else {
-            m_agoraAPI.channelInviteRefuse(channelID, terminal_id, my_uid, "人数过多");
+            m_agoraAPI.channelInviteRefuse(channelID, whoCalledAccount, 0, "{\"msg\":\"人数过多\"}");
           }
           is_being_called = false;
         } else {
@@ -283,6 +283,7 @@ public class SignalService extends Service {
       @Override public void onError(String name, int ecode, String desc) {
         super.onError(name, ecode, desc);
         Log.e(TAG, "SignalService onError \nname = " + name + "\necode = " + ecode + "\ndesc = " + desc);
+        doLeave();
       }
 
       //重连成功回调
@@ -295,25 +296,39 @@ public class SignalService extends Service {
       @Override public void onReconnecting(int nretry) {
         super.onReconnecting(nretry);
         Log.e(TAG, "SignalService onReconnecting nretry = " + nretry);
+        doLeave();
+        m_iscalling = false;
+        // TODO: 2018/1/5 断线重连
+        if (nretry > 3) {
+          doLogin();
+        }
       }
 
       @Override public void onInviteReceived(String channelID, String account, int uid, String extra) {
         super.onInviteReceived(channelID, account, uid, extra);
         Log.e(TAG, "SignalService onInviteReceived m_iscalling = " + m_iscalling);
-        if (m_iscalling) {//正在通话中
-          whoCalledAccount = account;
-          whoCalledUid = uid;
-          is_being_called = true;
-          m_agoraAPI.channelQueryUserNum(channelName);
-        } else {//不在通话
-          doJoin();
-          saveVideoRecordPost();
-          try {
-            Thread.sleep(2000);
-            Log.e(TAG, "SignalService I accept！");
-            m_agoraAPI.channelInviteAccept(channelID, account, uid);
-          } catch (InterruptedException e) {
-            e.printStackTrace();
+        String result = ShellUtils.execCommand("ls /dev", true).successMsg;
+        int resultvideonum = result.split("video").length;
+        Log.e(TAG, "resultvideonum = " + resultvideonum);
+        if (resultvideonum < 3) {
+          m_agoraAPI.channelInviteRefuse(channelID, account, 0, "{\"msg\":\"未插摄像头\"}");
+        } else {
+          //{"msg":"未插摄像头"}
+          if (m_iscalling) {//正在通话中
+            whoCalledAccount = account;
+            whoCalledUid = uid;
+            is_being_called = true;
+            m_agoraAPI.channelQueryUserNum(channelName);
+          } else {//不在通话
+            doJoin();
+            saveVideoRecordPost();
+            try {
+              Thread.sleep(2000);
+              Log.e(TAG, "SignalService I accept！");
+              m_agoraAPI.channelInviteAccept(channelID, account, uid);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
           }
         }
       }
@@ -325,6 +340,14 @@ public class SignalService extends Service {
         doJoin();
       }
     });
+  }
+
+  private void doLogin() {
+    ChatActivity.ChatLeave();
+    long expiredTime = System.currentTimeMillis() / 1000 + 3600;
+    String token = calcToken(appID, certificate, terminal_id, expiredTime);
+    //m_agoraAPI.login(appID, account, token, 0, "");
+    m_agoraAPI.login2(appID, terminal_id, token, 0, "", 60, 5);
   }
 
   private void doJoin() {

@@ -216,7 +216,8 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
       editor.putInt(ConstantApp.PrefManager.PREF_PROPERTY_PROFILE_IDX, profileIndex);
       editor.apply();
     }
-    return profileIndex;
+    //return profileIndex;
+    return 0;
   }
 
   private void doConfigEngine(String encryptionKey, String encryptionMode) {
@@ -493,7 +494,6 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         if (isFinishing()) {
           return;
         }
-
         doHandleExtraCallback(type, data);
       }
     });
@@ -576,12 +576,13 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         break;
 
       case AGEventHandler.EVENT_TYPE_ON_APP_ERROR:
+        // 2018/1/5  通话过程中掉线
         int subType = (int) data[0];
-
         if (subType == ConstantApp.AppError.NO_NETWORK_CONNECTION) {
           showLongToast(getString(zzm.zxtech.zxecho.R.string.msg_no_network_connection));
         }
-
+        SignalActivity.SignalLeave();
+        finish();
         break;
 
       case AGEventHandler.EVENT_TYPE_ON_DATA_CHANNEL_MSG:
