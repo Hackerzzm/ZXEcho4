@@ -12,8 +12,8 @@ android {
         applicationId "zzm.zxtech.zxecho"
         minSdkVersion 16 // ICE_CREAM_SANDWICH
         targetSdkVersion 25
-        versionCode 23
-        versionName "00.00.23"
+        versionCode 24
+        versionName "00.00.24"
 
         jackOptions {
             enabled false

@@ -11,7 +11,7 @@ public class ConstantApp {
   public static final int PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE = BASE_VALUE_PERMISSION + 3;
 
   public static final int MAX_PEER_COUNT = 4;
-  public static final int DEFAULT_PROFILE_IDX = 0; // default use 120P
+  public static final int DEFAULT_PROFILE_IDX = 2; // default use 120P
   public static final String ACTION_KEY_CHANNEL_NAME = "ecHANEL";
   public static final String ACTION_KEY_ENCRYPTION_KEY = "xdL_encr_key_";
   public static final String ACTION_KEY_ENCRYPTION_MODE = "tOK_edsx_Mode";

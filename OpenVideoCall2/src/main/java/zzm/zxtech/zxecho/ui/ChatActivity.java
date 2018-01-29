@@ -217,7 +217,7 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
       editor.apply();
     }
     //return profileIndex;
-    return 0;
+    return 2;
   }
 
   private void doConfigEngine(String encryptionKey, String encryptionMode) {
