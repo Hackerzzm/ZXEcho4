@@ -1,8 +1,9 @@
 package zzm.zxtech.signal;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
-import android.hardware.Camera;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -15,6 +16,8 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Call;
@@ -58,7 +61,7 @@ public class SignalService extends Service {
   private String videoRecordId = "";
   private String videoRecordDetailsId = "";
   private OkHttpClient client;
-  private Camera camera;
+  private long lastHeartBeatTime = 0; //记录上次收到心跳的时间
   private Handler signalHandler = new Handler() {
     @Override public void handleMessage(Message msg) {
       super.handleMessage(msg);
@@ -107,6 +110,7 @@ public class SignalService extends Service {
       }
     }
   };
+  private long lastLeaveTime = 0; // 记录上次挂断时间，给他15s释放摄像头的时间，以免有人不停挂断呼叫导致异常
 
   public static String hexlify(byte[] data) {
     char[] DIGITS_LOWER = {
@@ -156,6 +160,64 @@ public class SignalService extends Service {
     initViews();
     instant = this;
     doLogin();
+    startMonitorThread();
+  }
+
+  private void startMonitorThread() {
+    Thread t = new Thread() {
+      @Override public void run() {
+        super.run();
+        while (true) {
+
+          try {
+            Thread.sleep(60 * 1000);//每60秒检测一次
+            if (m_iscalling) {
+              if ((System.currentTimeMillis() - lastHeartBeatTime) > 80 * 1000) {
+                // TODO: 2018/1/25 通知Java服务器强制踢人
+                Log.e(TAG, "检测发现超时80s以上没有心跳，踢人");
+                channelBroadcast();
+                doLeave();
+                kickOffPost();
+              } else {
+                Log.e(TAG, "每60s检测ok！！！");
+              }
+            } else {
+              Log.e(TAG, "不在通话中，不检测！！！");
+            }
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    };
+    t.start();
+  }
+
+  private void channelBroadcast() {
+    Gson gson = new Gson();
+    Map<String, Object> msg = new HashMap<>();
+    msg.put("code", 105);
+    msg.put("from", terminal_id);
+    Map<String, Object> content = new HashMap();
+    content.put("msg", terminal_id + " is about to leave");
+    msg.put("content", content);
+    Log.e(TAG, gson.toJson(msg));
+    m_agoraAPI.messageChannelSend(channelName, gson.toJson(msg), "");
+  }
+
+  private void kickOffPost() {
+    RequestBody requestBodyPost = new FormBody.Builder().add("terminalId", terminal_id).build();
+    //61.160.96.205:8800/f/mobile/kickOff?terminalId=
+    Request requestPost = new Request.Builder().url("http://61.160.96.205:8800/f/mobile/kickOff").post(requestBodyPost).build();
+    client.newCall(requestPost).enqueue(new Callback() {
+      @Override public void onFailure(Call call, IOException e) {
+      }
+
+      @Override public void onResponse(Call call, Response response) throws IOException {
+        final String resultStr = response.body().string();
+        Log.e("zzm debug!!!", "通知服务器踢人：" + resultStr);
+      }
+    });
   }
 
   public String calcToken(String appID, String certificate, String account, long expiredTime) {
@@ -173,7 +235,7 @@ public class SignalService extends Service {
     Log.e(TAG, "get terminal_id = " + terminal_id);
     m_agoraAPI = AgoraAPIOnlySignal.getInstance(this, appID);
     m_agoraAPI.callbackSet(new AgoraAPI.CallBack() {
-      // TODO: 2017/12/20 监听回调
+      // 2017/12/20 监听回调
       //https://docs.agora.io/cn/2.0.2/addons/Signaling/API%20Reference/signal_android?platform=Android
       //登录成功回调
       @Override public void onLoginSuccess(int uid, int fd) {
@@ -214,6 +276,8 @@ public class SignalService extends Service {
       @Override public void onMessageInstantReceive(String account, int uid, String msg) {
         super.onMessageInstantReceive(account, uid, msg);
         Log.e(TAG, "SignalService onMessageInstantReceive \naccount =" + account + "\nmsg = " + msg);
+        // TODO: 2018/1/24 添加心跳机制，当有用户异常退出时能通知服务器将这个频道票内的所有用户踢出
+        lastHeartBeatTime = System.currentTimeMillis();
       }
 
       //加入频道回调
@@ -298,7 +362,7 @@ public class SignalService extends Service {
         Log.e(TAG, "SignalService onReconnecting nretry = " + nretry);
         doLeave();
         m_iscalling = false;
-        // TODO: 2018/1/5 断线重连
+        // 2018/1/5 断线重连
         if (nretry > 3) {
           doLogin();
         }
@@ -313,6 +377,7 @@ public class SignalService extends Service {
         if (resultvideonum < 3) {
           m_agoraAPI.channelInviteRefuse(channelID, account, 0, "{\"msg\":\"未插摄像头\"}");
         } else {
+          Log.e(TAG, "m_iscalling = " + m_iscalling);
           //{"msg":"未插摄像头"}
           if (m_iscalling) {//正在通话中
             whoCalledAccount = account;
@@ -343,6 +408,7 @@ public class SignalService extends Service {
   }
 
   private void doLogin() {
+    m_iscalling = false;
     ChatActivity.ChatLeave();
     long expiredTime = System.currentTimeMillis() / 1000 + 3600;
     String token = calcToken(appID, certificate, terminal_id, expiredTime);
@@ -357,12 +423,35 @@ public class SignalService extends Service {
     } else {
       Log.e(TAG, "SignalService 不在通话中，执行doJoin");
     }
-    m_iscalling = true;
-    signalHandler.sendEmptyMessage(2);
+    lastHeartBeatTime = System.currentTimeMillis();
+    //增加停止录像功能
+    Log.e("zzm debug!!!", "发送关闭后台录制广播");
+    Intent intent = new Intent("com.zxtech.BG_RECORDING_STOP");
+    sendBroadcast(intent);
+    Intent intent2 = new Intent();
+    intent2.setComponent(new ComponentName("com.zxtech.zzm.backgroundrecordingmonitor", "com.zxtech.zzm.backgroundrecordingmonitor.MonitorService"));
+    stopService(intent2);
+    //等待一段时间，让录制视频关闭，释放摄像头
+    try {
+      Thread.sleep(3000);
+      m_iscalling = true;
+      signalHandler.sendEmptyMessage(2);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   private void doLeave() {
     Log.e(TAG, "SignalService at doLeave");
+    //隐式Intent 启动Service
+    new MyTask().execute();
+    Intent intent = new Intent(Intent.ACTION_MAIN);
+    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+    ComponentName cn = new ComponentName("com.zxtech.zzm.zxtablet", "com.zxtech.zzm.zxtablet.ui.activity.Main2Activity");
+    intent.setComponent(cn);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
+    lastLeaveTime = System.currentTimeMillis();
     m_iscalling = false;
     signalHandler.sendEmptyMessage(1);
   }
@@ -426,5 +515,22 @@ public class SignalService extends Service {
         Log.e("zzm debug!!!", resultStr);
       }
     });
+  }
+
+  class MyTask extends AsyncTask<Void, Void, Void> {
+    @Override protected Void doInBackground(Void... params) {
+      Log.e("zzm debug!!!", "linphone 启动 backgroundrecordingmonitor");
+      /*// 实例化Intent
+      Intent it = new Intent();
+      //设置Intent的Action属性
+      it.setComponent(new ComponentName("com.zxtech.zxbackgroundrecording","com.zxtech.zxbackgroundrecording.BackgroundVideoRecorder"));//设置一个组件名称  同组件名来启动所需要启动Service
+      // 启动Activity
+      startService(it);*/
+      Intent intent2 = new Intent();
+      intent2.setComponent(
+          new ComponentName("com.zxtech.zzm.backgroundrecordingmonitor", "com.zxtech.zzm.backgroundrecordingmonitor.MonitorService"));
+      startService(intent2);
+      return null;
+    }
   }
 }
