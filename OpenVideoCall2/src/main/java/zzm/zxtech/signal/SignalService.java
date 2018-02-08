@@ -110,6 +110,7 @@ public class SignalService extends Service {
       }
     }
   };
+
   private long lastLeaveTime = 0; // 记录上次挂断时间，给他15s释放摄像头的时间，以免有人不停挂断呼叫导致异常
 
   public static String hexlify(byte[] data) {
@@ -360,10 +361,10 @@ public class SignalService extends Service {
       @Override public void onReconnecting(int nretry) {
         super.onReconnecting(nretry);
         Log.e(TAG, "SignalService onReconnecting nretry = " + nretry);
-        doLeave();
-        m_iscalling = false;
         // 2018/1/5 断线重连
         if (nretry > 3) {
+          m_iscalling = false;
+          doLeave();
           doLogin();
         }
       }
@@ -376,6 +377,8 @@ public class SignalService extends Service {
         Log.e(TAG, "resultvideonum = " + resultvideonum);
         if (resultvideonum < 3) {
           m_agoraAPI.channelInviteRefuse(channelID, account, 0, "{\"msg\":\"未插摄像头\"}");
+        } else if ((System.currentTimeMillis() - lastLeaveTime) < 10 * 1000) {
+          m_agoraAPI.channelInviteRefuse(channelID, account, 0, "{\"msg\":\"呼叫过于频繁请稍后再试！\"}");
         } else {
           Log.e(TAG, "m_iscalling = " + m_iscalling);
           //{"msg":"未插摄像头"}
@@ -443,6 +446,7 @@ public class SignalService extends Service {
 
   private void doLeave() {
     Log.e(TAG, "SignalService at doLeave");
+    lastLeaveTime = System.currentTimeMillis();
     //隐式Intent 启动Service
     new MyTask().execute();
     Intent intent = new Intent(Intent.ACTION_MAIN);

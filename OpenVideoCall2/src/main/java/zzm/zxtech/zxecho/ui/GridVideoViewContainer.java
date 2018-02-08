@@ -53,7 +53,7 @@ public class GridVideoViewContainer extends RecyclerView {
 
     int count = uids.size();
     if (count <= 2) { // only local full view or or with one peer
-      this.setLayoutManager(new LinearLayoutManager(activity.getApplicationContext(), RecyclerView.VERTICAL, false));
+      this.setLayoutManager(new LinearLayoutManager(activity.getApplicationContext(), LinearLayoutManager.VERTICAL, false));
     } else if (count > 2 && count <= 4) {
       this.setLayoutManager(new GridLayoutManager(activity.getApplicationContext(), 2, RecyclerView.VERTICAL, false));
     }

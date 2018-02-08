@@ -105,16 +105,18 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         }
         UserStatusData user = (UserStatusData) item;
         int uid = (user.mUid == 0) ? config().mUid : user.mUid;
-        if (mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 1) {
+        //if (mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 1) {
+        Log.e("zzm debug!!!", "switchTosmall 1");
           switchToSmallVideoView(uid);
-        } else {
+        /*} else {
+          Log.e("zzm debug!!!", "switchTodefault 1");
           switchToDefaultVideoView();
-        }
+        }*/
       }
     });
 
     SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
-    rtcEngine().setupLocalVideo(new VideoCanvas(surfaceV, VideoCanvas.RENDER_MODE_HIDDEN, 0));
+    rtcEngine().setupLocalVideo(new VideoCanvas(surfaceV, VideoCanvas.RENDER_MODE_ADAPTIVE, 0));
     surfaceV.setZOrderOnTop(false);
     surfaceV.setZOrderMediaOverlay(false);
 
@@ -444,21 +446,23 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         surfaceV.setZOrderOnTop(!useDefaultLayout);
         surfaceV.setZOrderMediaOverlay(!useDefaultLayout);
 
-        rtcEngine().setupRemoteVideo(new VideoCanvas(surfaceV, VideoCanvas.RENDER_MODE_HIDDEN, uid));
+        rtcEngine().setupRemoteVideo(new VideoCanvas(surfaceV, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
 
-        if (useDefaultLayout) {
+        /*if (useDefaultLayout) {
           log.debug("doRenderRemoteUi LAYOUT_TYPE_DEFAULT " + (uid & 0xFFFFFFFFL));
+          Log.e("zzm debug!!!", "switchTodefault 2");
           switchToDefaultVideoView();
-        } else {
+        } else {*/
           int bigBgUid = mSmallVideoViewAdapter == null ? uid : mSmallVideoViewAdapter.getExceptedUid();
           log.debug("doRenderRemoteUi LAYOUT_TYPE_SMALL " + (uid & 0xFFFFFFFFL) + " " + (bigBgUid & 0xFFFFFFFFL));
           try {
+            Log.e("zzm debug!!!", "switchTosmall 2");
             switchToSmallVideoView(bigBgUid);
           } catch (NullPointerException e) {
             Log.e(TAG, "一个空指针是什么鬼");
             e.printStackTrace();
           }
-        }
+        //}
       }
     });
   }
@@ -633,24 +637,28 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         log.debug("doRemoveRemoteUi " + (uid & 0xFFFFFFFFL) + " " + (bigBgUid & 0xFFFFFFFFL) + " " + mLayoutType);
 
         if (mLayoutType == LAYOUT_TYPE_DEFAULT || uid == bigBgUid) {
-          switchToDefaultVideoView();
+          Log.e("zzm debug!!!", "switchTodefault 3");
+          //switchToDefaultVideoView();
         } else {
+          Log.e("zzm debug!!!", "switchTosmall 3");
           switchToSmallVideoView(bigBgUid);
         }
       }
     });
   }
 
-  private void switchToDefaultVideoView() {
+  /*private void switchToDefaultVideoView() {
+    Log.e("zzm debug!!!", "switchToDefaultVideoView");
     if (mSmallVideoViewDock != null) {
       mSmallVideoViewDock.setVisibility(View.GONE);
     }
     mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList);
 
     mLayoutType = LAYOUT_TYPE_DEFAULT;
-  }
+  }*/
 
   private void switchToSmallVideoView(int bigBgUid) {
+    Log.e("zzm debug!!!", "switchToSmallVideoView bigBgUid = " + bigBgUid);
     HashMap<Integer, SurfaceView> slice = new HashMap<>(1);
     slice.put(bigBgUid, mUidsList.get(bigBgUid));
     mGridVideoViewContainer.initViewContainer(this, bigBgUid, slice);
@@ -678,7 +686,8 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
       create = true;
       mSmallVideoViewAdapter = new SmallVideoViewAdapter(this, config().mUid, exceptUid, mUidsList, new VideoViewEventListener() {
         @Override public void onItemDoubleClick(View v, Object item) {
-          switchToDefaultVideoView();
+          Log.e("zzm debug!!!", "switchTodefault 4");
+          //switchToDefaultVideoView();
         }
       });
       mSmallVideoViewAdapter.setHasStableIds(true);
@@ -686,10 +695,11 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
     recycler.setHasFixedSize(true);
 
     log.debug("bindToSmallVideoView " + twoWayVideoCall + " " + (exceptUid & 0xFFFFFFFFL));
-
     if (twoWayVideoCall) {
+      Log.e("zzm debug!!!", "bindToSmallVideoView true");
       recycler.setLayoutManager(new RtlLinearLayoutManager(getApplicationContext(), RtlLinearLayoutManager.HORIZONTAL, false));
     } else {
+      Log.e("zzm debug!!!", "bindToSmallVideoView false");
       recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
     }
     recycler.addItemDecoration(new SmallVideoViewDecoration());

@@ -175,7 +175,7 @@ public class WorkerThread extends Thread {
       if (!ConstantUtil.getId(null).equals("1111111")) {
         mRtcEngine.setParameters("{\"che.video.captureFormatNV21\": true}");
       }
-      mRtcEngine.setupLocalVideo(new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, uid));
+      mRtcEngine.setupLocalVideo(new VideoCanvas(view, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
       mRtcEngine.startPreview();
     } else {
       mRtcEngine.stopPreview();
